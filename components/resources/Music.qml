@@ -10,7 +10,15 @@ Item {
 
         // add music files into assets/music
         // uncomment PlaylistItem below and repeat for each music file
-        // PlaylistItem { source: '../../assets/music/whatever.mp3'; }
+        PlaylistItem { source: '../../assets/music/1.mp3'; }
+        PlaylistItem { source: '../../assets/music/2.mp3'; }
+        PlaylistItem { source: '../../assets/music/3.mp3'; }
+        PlaylistItem { source: '../../assets/music/4.mp3'; }
+        PlaylistItem { source: '../../assets/music/5.mp3'; }
+        PlaylistItem { source: '../../assets/music/6.mp3'; }
+        PlaylistItem { source: '../../assets/music/7.mp3'; }
+        PlaylistItem { source: '../../assets/music/8.mp3'; }
+        PlaylistItem { source: '../../assets/music/9.mp3'; }
     }
 
     function volumeCheck() {
