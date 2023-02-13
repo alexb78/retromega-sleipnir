@@ -22,6 +22,16 @@ Item {
         return currentGame.assets.screenshot;
     }
 
+    property string imgTitleScreenshot: {
+        if (currentGame === null) return '';
+        return currentGame.assets.titlescreen;
+    }
+
+    property string imgCart: {
+        if (currentGame === null) return '';
+        return currentGame.assets.cartridge;
+    }
+
     property var ratingText: {
         if (currentGame === null) return '';
         if (currentGame.rating === 0) return '';
@@ -238,7 +248,7 @@ Item {
                 right: parent.right;
                 rightMargin: vpx(10);
             }
-            imageSource: imgScreenshot;
+            imageSource: imgBoxFront;
         }
 
         Media.GameVideo {
@@ -284,7 +294,7 @@ Item {
                 bottom: parent.bottom;
                 bottomMargin: vpx(20);
             }
-            imageSource: imgBoxFront;
+            imageSource: imgCart;
             alignment: Image.AlignLeft;
         }
 

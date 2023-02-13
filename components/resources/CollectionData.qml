@@ -178,7 +178,7 @@ Item {
         'ngp': { color: '#b32428', vendor: 'SNK', year: '1998-1999', image: 'ngpc' },
         'ngpc': { color: '#3f621a', vendor: 'SNK', year: '1999-2001' },
         'odyssey2': { color: '#9b276d', vendor: 'Magnavox', year: '1978-1984' },
-        'pcecd': { color: '#6c8156', vendor: 'NEC', year: '1988-1994', image: 'pcengine' },
+        'pcecd': { color: '#6c8156', vendor: 'NEC', year: '1988-1994' },
         'pcengine': { color: '#25482b', vendor: 'NEC', year: '1987-1994' },
         'pico8': { color: '#1c542d', vendor: 'Lexaloffle', year: '2015' },
         'pokemini': { color: '#19b091', vendor: 'Nintendo', year: '2001-2002' },

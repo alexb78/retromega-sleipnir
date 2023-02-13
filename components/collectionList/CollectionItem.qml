@@ -108,12 +108,12 @@ Item {
         id: device;
 
         source: '../../assets/images/devices/' + collectionData.getImage(modelData.shortName) + '.png';
-        width: root.width * .50;
-        height: root.height * .65;
+        width: root.width * .60;
+        height: root.height * .60;
         fillMode: Image.PreserveAspectFit;
         horizontalAlignment: Image.AlignHCenter;
         asynchronous: true;
-        smooth: true;
+        smooth: false;
         visible: true;
 
         anchors {
@@ -124,13 +124,13 @@ Item {
         }
     }
 
-    // DropShadow {
-    //     source: device;
-    //     verticalOffset: 10;
-    //     color: '#30000000';
-    //     radius: 20;
-    //     samples: 41;
-    //     cached: true;
-    //     anchors.fill: device;
-    // }
+    DropShadow {
+       source: device;
+       verticalOffset: 10;
+       color: '#30000000';
+       radius: 20;
+       samples: 41;
+       cached: true;
+       anchors.fill: device;
+    }
 }

@@ -29,6 +29,12 @@ Item {
         sounds.nav();
     }
 
+    function onMediaPressed() {
+        previousView = currentView;
+        currentView = 'media';
+        sounds.nav();
+    }
+
     function detailsButtonClicked(button) {
         switch (button) {
             case 'play':
@@ -92,6 +98,7 @@ Item {
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
             fullDescription.scrollUp();
+            onMediaPressed();
         }
     }
 
@@ -124,6 +131,11 @@ Item {
         if (currentGame === null) return '';
         if (currentGame.assets.tile !== "") return currentGame.assets.tile;
         return currentGame.assets.boxFront;
+    }
+
+    property string imgCart: {
+        if (currentGame === null) return '';
+        return currentGame.assets.cartridge;
     }
 
     property string imgLogo: {
@@ -350,7 +362,7 @@ Item {
         Media.GameImage {
             id: gameDetailsLogo;
             imageSource: imgLogo;
-            width: parent.width * .55 - vpx(80);
+            width: parent.width * .65 - vpx(80);
             anchors {
                 top: parent.top;
                 bottom: parent.bottom;
@@ -360,14 +372,14 @@ Item {
 
         Media.GameImage {
             id: gameDetailsTile;
-            imageSource: imgTile;
+            imageSource: imgCart;
             width: parent.width * .50 - vpx(80);
             anchors {
                 top: parent.top;
                 bottom: parent.bottom;
                 right: parent.right;
             }
-            alignment: Image.AlignRight;
+            //alignment: Image.AlignRight;
         }
     }
 
@@ -400,12 +412,14 @@ Item {
             { title: 'Play', key: theme.buttonGuide.accept, square: false, sigValue: 'accept' },
             { title: 'Back', key: theme.buttonGuide.cancel, square: false, sigValue: 'cancel' },
             { title: 'Favorite', key: theme.buttonGuide.filters, square: false, sigValue: 'filters' },
+            { title: 'Media', key: theme.buttonGuide.pageUp, square: true, sigValue: 'media' }
         ];
 
         onFooterButtonClicked: {
             if (sigValue === 'accept') onAcceptPressed();
             if (sigValue === 'cancel') onCancelPressed();
             if (sigValue === 'filters') onFiltersPressed();
+            if (sigValue === 'media') onMediaPressed();
             if (sigValue === 'details') onDetailsPressed();
         }
     }

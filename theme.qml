@@ -8,6 +8,7 @@ import 'components/settings' as Settings
 import 'components/resources' as Resources
 import 'components/themes' as Themes
 import 'components/sorting' as Sorting
+import 'components/gameMedia' as GameMedia
 import 'components/attract' as Attract
 import 'components/retroAchievements' as RetroAchievements
 import 'components/gameCheevos' as GameCheevos
@@ -366,6 +367,13 @@ FocusScope {
 
         visible: currentView === 'attract';
         focus: currentView === 'attract';
+    }
+
+    GameMedia.Component {
+        id: gameMediaComponent;
+
+        visible: currentView === 'media';
+        focus: currentView === 'media';
     }
 
     /* Text { id: debug; x: 20; y: 20; width: 20; height: 20; text: 'debug'; color: 'magenta'; } */

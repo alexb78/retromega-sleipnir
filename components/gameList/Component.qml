@@ -174,6 +174,12 @@ Flickable {
         sounds.nav();
     }
 
+    function onMediaPressed() {
+        previousView = currentView;
+        currentView = 'media';
+        sounds.forward();
+    }
+
     // todo keep an eye on this issue https://github.com/mmatyas/pegasus-frontend/issues/781
     // R2 and L2 must be handled 'onRelease' because of an android bug that requires double presses
     Keys.onReleased: {
@@ -188,7 +194,8 @@ Flickable {
         //L2
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
-            onFavoritePressed();
+            //onFavoritePressed();
+            onMediaPressed();
         }
     }
 
@@ -221,7 +228,8 @@ Flickable {
             { title: 'Back', key: theme.buttonGuide.cancel, square: false, sigValue: 'cancel' },
             { title: 'Details', key: theme.buttonGuide.details, square: false, sigValue: 'details' },
             { title: 'Random', key: theme.buttonGuide.filters, square: false, sigValue: 'filters' },
-            { title: 'Favorite', visible: !onlyFavorites, key: theme.buttonGuide.pageUp, square: true, sigValue: 'favorite' }
+            //{ title: 'Favorite', visible: !onlyFavorites, key: theme.buttonGuide.pageUp, square: true, sigValue: 'favorite' }
+            { title: 'Media', key: theme.buttonGuide.pageUp, square: true, sigValue: 'media' }
         ];
 
         onFooterButtonClicked: {
@@ -229,7 +237,8 @@ Flickable {
             if (sigValue === 'cancel') onCancelPressed();
             if (sigValue === 'details') onDetailsPressed();
             if (sigValue === 'filters') onFiltersPressed();
-            if (sigValue === 'favorite') onFavoritePressed();
+            //if (sigValue === 'favorite') onFavoritePressed();
+            if (sigValue === 'media') onMediaPressed();
         }
     }
 
