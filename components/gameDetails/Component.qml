@@ -135,7 +135,8 @@ Item {
 
     property string imgCart: {
         if (currentGame === null) return '';
-        return currentGame.assets.cartridge;
+        if (currentGame.assets.cartridge !== "") return currentGame.assets.cartridge;
+        return currentGame.assets.boxFront;
     }
 
     property string imgLogo: {
