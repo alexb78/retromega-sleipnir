@@ -24,19 +24,18 @@ id: root
         root.focus = true;
         root.opacity = 1;
         attractTitle.text = currentGame.title;
-        music.volumeCheck();
+        //music.volumeCheck();
         //collectionTitle.text = currentGame.collections.get(0).name;
     }
 
     function closeMedia() {
         root.opacity = 0;
-        music.volumeCheck();
+        //music.volumeCheck();
         //content.focus = true;
     }
 
     function onCancelPressed() {
         currentView = previousView;
-        //todo oder zu gameDetails..
         sounds.back();
         closeMedia()
     }
@@ -79,10 +78,7 @@ id: root
                 closeMedia();
             }
         });
-        //music.registerVideo(videoPlayer);
-        //music.registerVideo(videoLoader);
-        //music.registerVideo(videoWrapper);
-
+        
         if (currentView === 'media') showMedia();
     }
 
@@ -171,9 +167,9 @@ id: root
             Rectangle {
                 width: vpx(10)
                 height: width
-                color: (medialist.currentIndex == index) ? "#e58200" : "#e58200"
+                color: (medialist.currentIndex == index) ? theme.current.titleColor : theme.current.titleColor
                 radius: width/2
-                opacity: (medialist.currentIndex == index) ? 1 : 0.5
+                opacity: (medialist.currentIndex == index) ? 1 : 0.2
             }
         }
     }
@@ -186,7 +182,7 @@ id: root
         color: 'white';
         style: Text.Outline;
         styleColor: 'black';
-        horizontalAlignment: Text.AlignHCenter;
+        horizontalAlignment: Text.AlignRight;
         elide: Text.ElideRight;
         maximumLineCount: 2;
         wrapMode: Text.WordWrap;
