@@ -35,6 +35,7 @@ Item {
 
     function startVideo() {
         showTitle = settings.get('attractTitle');
+        updateSortedCollection();
         nextVideo();
         music.volumeCheck();
     }
@@ -49,7 +50,8 @@ Item {
         }
 
         const randomIndex = Math.floor(Math.random() * gameCount);
-        currentAttractGame = api.allGames.get(attractGames.mapToSource(randomIndex));
+        //currentAttractGame = api.allGames.get(attractGames.mapToSource(randomIndex));
+        currentAttractGame = currentCollection.games.get(attractGames.mapToSource(randomIndex));
         attractPlayer.source = currentAttractGame.assets.video;
         attractTitle.text = currentAttractGame.title;
         collectionTitle.text = currentAttractGame.collections.get(0).name;
@@ -85,7 +87,7 @@ Item {
     SortFilterProxyModel {
         id: attractGames;
 
-        sourceModel: api.allGames;
+        sourceModel: currentCollection.games;
         filters: [
             ExpressionFilter { expression: { assets.video !== ''; } }
         ]
