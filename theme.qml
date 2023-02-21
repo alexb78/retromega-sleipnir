@@ -39,6 +39,7 @@ FocusScope {
     property var sortDir: Qt.AscendingOrder;
     property string nameFilter: '';
     property string textInputTitle: '';
+    property string textInputNote: '';
     property string textInputValue: '';
 
     function addCurrentViewCallback(callback) {
