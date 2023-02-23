@@ -23,16 +23,21 @@ Item {
         currentGame.launch();
     }
 
+    function onMediaPressed() {
+        previousView = currentView;
+        currentView = 'media';
+        sounds.nav();
+    }
+
     function onFiltersPressed() {
         currentGame.favorite = !currentGame.favorite;
         favoritesChanged = true;
         sounds.nav();
     }
 
-    function onMediaPressed() {
-        previousView = currentView;
-        currentView = 'media';
-        sounds.nav();
+    function onAttractPressed() {
+        currentView = 'attract';
+        sounds.forward();
     }
 
     function detailsButtonClicked(button) {
@@ -81,7 +86,7 @@ Item {
 
         if (api.keys.isDetails(event)) {
             event.accepted = true;
-            onDetailsPressed();
+            onMediaPressed();
         }
 
         if (api.keys.isFilters(event)) {
@@ -98,7 +103,7 @@ Item {
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
             fullDescription.scrollUp();
-            onMediaPressed();
+            onAttractPressed();
         }
     }
 
@@ -412,16 +417,17 @@ Item {
         buttons: [
             { title: 'Play', key: theme.buttonGuide.accept, square: false, sigValue: 'accept' },
             { title: 'Back', key: theme.buttonGuide.cancel, square: false, sigValue: 'cancel' },
+            { title: 'Media', key: theme.buttonGuide.details, square: false, sigValue: 'media' },
             { title: 'Favorite', key: theme.buttonGuide.filters, square: false, sigValue: 'filters' },
-            { title: 'Media', key: theme.buttonGuide.pageUp, square: true, sigValue: 'media' }
+            { title: 'Attract', key: theme.buttonGuide.pageUp, square: true, sigValue: 'attract' }
         ];
 
         onFooterButtonClicked: {
             if (sigValue === 'accept') onAcceptPressed();
             if (sigValue === 'cancel') onCancelPressed();
             if (sigValue === 'filters') onFiltersPressed();
+            if (sigValue === 'attract') onAttractPressed();
             if (sigValue === 'media') onMediaPressed();
-            if (sigValue === 'details') onDetailsPressed();
         }
     }
 

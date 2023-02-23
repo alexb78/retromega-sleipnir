@@ -19,8 +19,11 @@ Item {
     }
 
     function onDetailsPressed() {
-        settings.toggle('attractTitle');
-        showTitle = settings.get('attractTitle');
+        //settings.toggle('attractTitle');
+        //showTitle = settings.get('attractTitle');
+        //previousView = 'attract'
+        currentView = 'gameDetails';
+        sounds.forward();
     }
 
     function onAcceptPressed() {
@@ -52,6 +55,7 @@ Item {
         const randomIndex = Math.floor(Math.random() * gameCount);
         //currentAttractGame = api.allGames.get(attractGames.mapToSource(randomIndex));
         currentAttractGame = currentCollection.games.get(attractGames.mapToSource(randomIndex));
+        currentGame = currentAttractGame;
         attractPlayer.source = currentAttractGame.assets.video;
         attractTitle.text = currentAttractGame.title;
         collectionTitle.text = currentAttractGame.collections.get(0).name;
