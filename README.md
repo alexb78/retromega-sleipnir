@@ -38,6 +38,9 @@ There is also this video guide [available here](https://www.youtube.com/watch?v=
 - dark mode
 - multiple image packages for collections
 
+## Features added in this repo
+- Display additional assets in fullscreen: video, front and back box art, screen shot, title screen and cartridge. Note: Parts of the code taken from MediaView component of gameOS theme by Seth Powell.
+
 ---
 
 ## Controls Guide
