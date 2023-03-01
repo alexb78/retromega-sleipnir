@@ -171,7 +171,7 @@ Item {
         'mvs': { color: '#851d01', vendor: 'SNK', year: '1990-1997', image: 'arcade' },
         'n64': { color: '#ffc001', vendor: 'Nintendo', year: '1996-2002' },
         'naomi': { color: '#843c8a', vendor: 'Sega', year: '1998-2001', image: 'arcade' },
-        'nds': { color: '#d09826', vendor: 'Nintendo', year: '2004-2013' },
+        'nds': { color: '#ff4554', vendor: 'Nintendo', year: '2004-2013' },
         'neogeo': { color: '#1499de', vendor: 'SNK', year: '1990-2004' },
         'neogeocd': { color: '#9e5c27', vendor: 'SNK', year: '1994-1997' },
         'nes': { color: '#D8D8D8', vendor: 'Nintendo', year: '1983-2003' },

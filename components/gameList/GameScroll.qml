@@ -29,6 +29,7 @@ Item {
 
     property string imgCart: {
         if (currentGame === null) return '';
+        if (currentGame.assets.boxFull !== "") return currentGame.assets.boxFull;
         return currentGame.assets.cartridge;
     }
 
