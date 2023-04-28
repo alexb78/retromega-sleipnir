@@ -132,16 +132,18 @@ Item {
         return currentGame.assets.screenshot;
     }
 
-    property string imgTile: {
-        if (currentGame === null) return '';
-        if (currentGame.assets.tile !== "") return currentGame.assets.tile;
-        return currentGame.assets.boxFront;
-    }
+    //property string imgTile: {
+    //    if (currentGame === null) return '';
+    //    if (currentGame.assets.tile !== "") return currentGame.assets.tile;
+    //    return currentGame.assets.boxFront;
+    //}
 
     property string imgCart: {
         if (currentGame === null) return '';
         if (currentGame.assets.cartridge !== "") return currentGame.assets.cartridge;
-        return currentGame.assets.boxFront;
+        if (currentGame.assets.boxFront !== "") return currentGame.assets.boxFront;
+        if (currentGame.assets.titlescreen !== "") return currentGame.assets.titlescreen;
+        return currentGame.assets.boxBack;
     }
 
     property string imgLogo: {

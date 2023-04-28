@@ -138,6 +138,7 @@ Item {
         'amiga': { color: '#0747a1', vendor: 'Commodore', year: '1985-1996' },
         'android': { color: '#266f4f' },
         'arcade': { color: '#528821' },
+        'amstradcpc': { color: '#4f7524', vendor: 'Amstrad', year: '1984-1990' },
         'atari2600': { color: '#4f7524', vendor: 'Atari', year: '1977-1992' },
         'atari5200': { color: '#0685bb', vendor: 'Atari', year: '1982-1984' },
         'atari7800': { color: '#1d4b4c', vendor: 'Atari', year: '1986-1992' },
@@ -201,7 +202,7 @@ Item {
         'vectrex': { color: '#8129f1', vendor: 'Milton Bradley', year: '1982-1984' },
         'wii': { color: '#e0e027', vendor: 'Nintendo', year: '2006-2017' },
         'wswan': { color: '#d38aba', vendor: 'Bandai', year: '1999-2003' },
-        'wswanc': { color: '#9b3f23', vendor: 'Bandai', year: '1999-2003', image: 'wswan' },
+        'wswanc': { color: '#9b3f23', vendor: 'Bandai', year: '1999-2003' },
         'x68000': { color: '#a53180', vendor: 'Sharp', year: '1987-1993' },
         'zxspectrum': { color: '#0c46a9', vendor: 'Sinclair', year: '1982-1992' },
     };

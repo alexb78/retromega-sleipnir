@@ -14,23 +14,25 @@ Item {
 
     property string imgBoxFront: {
         if (currentGame === null) return '';
-        return currentGame.assets.boxFront;
-    }
-
-    property string imgScreenshot: {
-        if (currentGame === null) return '';
-        return currentGame.assets.screenshot;
-    }
-
-    property string imgTitleScreenshot: {
-        if (currentGame === null) return '';
+        if (currentGame.assets.boxFront !== "") return currentGame.assets.boxFront;
         return currentGame.assets.titlescreen;
     }
 
+    //property string imgScreenshot: {
+    //    if (currentGame === null) return '';
+    //    return currentGame.assets.screenshot;
+    //}
+
+    //property string imgTitleScreenshot: {
+    //    if (currentGame === null) return '';
+    //    return currentGame.assets.titlescreen;
+    //}
+
     property string imgCart: {
         if (currentGame === null) return '';
-        if (currentGame.assets.boxFull !== "") return currentGame.assets.boxFull;
-        return currentGame.assets.cartridge;
+        if (currentGame.assets.cartridge !== "") return currentGame.assets.cartridge;
+        if (currentGame.assets.boxBack !== "") return currentGame.assets.boxBack;
+        return currentGame.assets.screenshot;
     }
 
     property var ratingText: {
