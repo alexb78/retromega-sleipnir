@@ -175,6 +175,7 @@ Item {
         shade: 'dark';
         color: theme.current.bgColor;
         showTitle: false;
+        showHeaderLink: false;
 
         Media.GameImage {
             id: raLogo;

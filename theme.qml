@@ -42,6 +42,9 @@ FocusScope {
     property string textInputNote: '';
     property string textInputValue: '';
 
+    // Main homepage index
+    property var currentHomeIndex: 0
+
     function addCurrentViewCallback(callback) {
         currentViewCallbacks.push(callback);
     }
@@ -54,6 +57,12 @@ FocusScope {
 
     function clamp(min, val, max) {
         return Math.max(0, Math.min(val, max));
+    }
+
+    function setHomeIndex(index) {
+        //setCollectionListIndex(0)
+        api.memory.set('homeIndex', index)
+        currentHomeIndex = index
     }
 
     function wrap(min, val, max) {

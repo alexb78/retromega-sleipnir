@@ -6,6 +6,12 @@ import '../header' as Header
 Flickable {
     anchors.fill: parent;
 
+    property bool showHeaderLinkItems: {
+        return currentCollection.shortName === 'favorites' 
+            || currentCollection.shortName === 'allgames' 
+            || currentCollection.shortName === 'recents';
+    }
+
     flickableDirection: Flickable.HorizontalFlick
     onFlickStarted: {
         if (horizontalVelocity < 0) {
@@ -248,6 +254,7 @@ Flickable {
         showDivider: true;
         shade: 'dark';
         color: theme.current.bgColor;
-        showTitle: true;
+        showHeaderLink: showHeaderLinkItems;
+        showTitle: true && !showHeaderLinkItems;
     }
 }

@@ -3,7 +3,9 @@ import QtQuick 2.15
 Rectangle {
     property bool showDivider: true;
     property string shade: 'light';
+    property var light: true;
     property bool showTitle: false;
+    property bool showHeaderLink: false;
     property bool showSorting: true;
     property bool showSettings: true;
     property string title: '';
@@ -69,6 +71,80 @@ Rectangle {
         }
     }
 
+    HeaderLink {
+        id: title_systems
+
+        visible: showHeaderLink;
+        title: "Systems"
+        index: 0
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.topMargin: 16
+        anchors.leftMargin: 32
+        lightText: light
+        MouseArea {
+            anchors.fill: parent;
+            onClicked: {
+                //updateCollectionIndex(title_systems.index);
+                //currentShortName = 'allgames';
+                currentView = 'collectionList';
+                updateGameIndex(0, true);
+                sounds.back();    
+                setHomeIndex(title_systems.index);    
+            }
+        }         
+    }
+
+    HeaderLink {
+        id: title_favorites
+
+        visible: showHeaderLink;
+        title: "Favorites"
+        index: 2
+        anchors.left: title_systems.right
+        anchors.top: parent.top
+        anchors.topMargin: 16
+        anchors.leftMargin: 24
+        lightText: light
+        MouseArea {
+            anchors.fill: parent;
+            onClicked: {
+                currentGame = null;
+                currentShortName = 'favorites';
+                updateCollectionIndex(title_favorites.index);
+                updateSortedCollection();
+                currentView = 'gameList';
+                sounds.forward();       
+                setHomeIndex(title_favorites.index);    
+            }
+        }          
+    }
+
+    HeaderLink {
+        id: title_recent
+
+        visible: showHeaderLink;
+        title: "Last Played"
+        index: 1
+        anchors.left: title_favorites.right
+        anchors.top: parent.top
+        anchors.topMargin: 16
+        anchors.leftMargin: 24
+        lightText: light
+        MouseArea {
+            anchors.fill: parent;
+            onClicked: {
+                currentGame = null;
+                currentShortName = 'recents';
+                updateCollectionIndex(title_recent.index);
+                updateSortedCollection();
+                currentView = 'gameList';
+                sounds.forward();   
+                setHomeIndex(title_recent.index);    
+            }
+        }                                          
+    }           
+
     Row {
         id: headerWidgets;
 
@@ -80,7 +156,7 @@ Rectangle {
             right: parent.right;
             rightMargin: parent.height * .30;
         }
-
+    
         Sort {
             id: sort;
 

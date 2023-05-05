@@ -129,5 +129,7 @@ Item {
     Header.Component {
         showDivider: false;
         shade: 'light';
+        light: true;
+        showHeaderLink: true;
     }
 }
