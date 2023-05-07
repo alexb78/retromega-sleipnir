@@ -35,6 +35,9 @@ Item {
     property string sortColorDark: '#80777777';
     property string sortButtonColorLight: '#80000000';
     property string sortButtonColorDark: '#cccccc';
+    property string headerLinkActive: "#ffffff";
+    property string headerLinkSelected: "#ffffff";
+    property string headerLinkText: "#60ffffff";
 
     // footer
     property string buttonLetterColor: '#000000';

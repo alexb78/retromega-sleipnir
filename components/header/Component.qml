@@ -3,7 +3,7 @@ import QtQuick 2.15
 Rectangle {
     property bool showDivider: true;
     property string shade: 'light';
-    property var light: true;
+    //property var light: true;
     property bool showTitle: false;
     property bool showHeaderLink: false;
     property bool showSorting: true;
@@ -81,7 +81,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 16
         anchors.leftMargin: 32
-        lightText: light
+        lightText: parent.shade === 'light'
         MouseArea {
             anchors.fill: parent;
             onClicked: {
@@ -105,7 +105,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 16
         anchors.leftMargin: 24
-        lightText: light
+        lightText: parent.shade === 'light'
         MouseArea {
             anchors.fill: parent;
             onClicked: {
@@ -130,7 +130,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 16
         anchors.leftMargin: 24
-        lightText: light
+        lightText: parent.shade === 'light'
         MouseArea {
             anchors.fill: parent;
             onClicked: {
