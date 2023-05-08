@@ -85,14 +85,17 @@ Rectangle {
         MouseArea {
             anchors.fill: parent;
             onClicked: {
-                //updateCollectionIndex(title_systems.index);
+                updateCollectionIndex(3);
+                updateSortedCollection();
                 //currentShortName = 'allgames';
                 currentView = 'collectionList';
-                updateGameIndex(0, true);
+                //updateGameIndex(0, true);
                 sounds.back();    
                 setHomeIndex(title_systems.index);    
             }
-        }         
+        }       
+        //KeyNavigation.right: title_recent
+        //KeyNavigation.left: title_favorites
     }
 
     HeaderLink {
@@ -110,14 +113,16 @@ Rectangle {
             anchors.fill: parent;
             onClicked: {
                 currentGame = null;
-                currentShortName = 'favorites';
+                //currentShortName = 'favorites';
                 updateCollectionIndex(title_favorites.index);
                 updateSortedCollection();
                 currentView = 'gameList';
                 sounds.forward();       
                 setHomeIndex(title_favorites.index);    
             }
-        }          
+        }    
+        //KeyNavigation.right: title_systems
+        //KeyNavigation.left: title_recent
     }
 
     HeaderLink {
@@ -134,15 +139,17 @@ Rectangle {
         MouseArea {
             anchors.fill: parent;
             onClicked: {
-                currentGame = null;
-                currentShortName = 'recents';
+                //currentGame = null;
+                //currentShortName = 'recents';
                 updateCollectionIndex(title_recent.index);
                 updateSortedCollection();
                 currentView = 'gameList';
                 sounds.forward();   
                 setHomeIndex(title_recent.index);    
             }
-        }                                          
+        }      
+        //KeyNavigation.right: title_favorites
+        //KeyNavigation.left: title_systems
     }           
 
     Row {

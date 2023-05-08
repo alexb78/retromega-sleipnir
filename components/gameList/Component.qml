@@ -82,6 +82,7 @@ Flickable {
     }
 
     function onCancelPressed() {
+        setHomeIndex(0);
         currentView = 'collectionList';
         updateGameIndex(0, true);
         sounds.back();
