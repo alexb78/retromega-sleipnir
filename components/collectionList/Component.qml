@@ -22,6 +22,16 @@ Item {
         if (updated) { sounds.nav(); }
     }
 
+    Keys.onUpPressed: {
+        event.accepted = true;
+        fullDescription.scrollUp();
+    }
+        
+    Keys.onDownPressed: {
+        event.accepted = true;
+        fullDescription.scrollDown();
+    }        
+
     function onAcceptPressed() {
         currentGame = null;
         updateSortedCollection();
@@ -29,10 +39,16 @@ Item {
         sounds.forward();
     }
 
-    function onSettingsPressed() {
+    function onMorePressed() {
         previousView = currentView;
-        currentView = 'settings';
+        fullDescription.anchors.topMargin = 0;
         sounds.forward();
+    }
+
+    function hideFullDescription() {
+        fullDescription.anchors.topMargin = root.height;
+        fullDescription.resetFlickable();
+        sounds.back();
     }
 
     function onCheevosPressed() {
@@ -55,7 +71,7 @@ Item {
 
         if (api.keys.isDetails(event)) {
             event.accepted = true;
-            onSettingsPressed();
+            onMorePressed();
         }
 
         if (api.keys.isFilters(event)) {
@@ -113,14 +129,14 @@ Item {
         buttons: [
             { title: 'Select', key: theme.buttonGuide.accept, square: false, sigValue: 'accept' },
             { title: 'Menu', key: theme.buttonGuide.cancel, square: false, sigValue: null },
-            { title: 'Settings', key: theme.buttonGuide.details, square: false, sigValue: 'settings' },
+            { title: 'More', key: theme.buttonGuide.details, square: false, sigValue: 'more' },
             { title: 'Cheevos', key: theme.buttonGuide.filters, square: false, visible: cheevosEnabled, sigValue: 'cheevos' },
             { title: 'Attract', key: theme.buttonGuide.pageUp, square: true, sigValue: 'attract' },
         ];
 
         onFooterButtonClicked: {
             if (sigValue === 'accept') onAcceptPressed();
-            if (sigValue === 'settings') onSettingsPressed();
+            if (sigValue === 'more')   onMorePressed();
             if (sigValue === 'cheevos') onCheevosPressed();
             if (sigValue === 'attract') onAttractPressed();
         }
@@ -131,5 +147,24 @@ Item {
         shade: 'light';
         //light: true;
         showHeaderLink: true;
+    }
+
+    GameDescription {
+        id: fullDescription;
+
+        height: parent.height;
+        width: parent.width;
+        blurSource: collectionScroll;
+
+        anchors {
+            top: parent.top;
+            topMargin: root.height;
+            left: parent.left;
+            right: parent.right;
+        }
+
+        Behavior on anchors.topMargin {
+            PropertyAnimation { easing.type: Easing.OutCubic; duration: 200; }
+        }
     }
 }

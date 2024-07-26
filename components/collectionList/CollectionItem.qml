@@ -11,6 +11,13 @@ Item {
         }
     }
 
+    property var hasMoreButton: {
+        return true;
+        if (currentGame === null) return false;
+        if (currentGame.description) return true;
+        return false;
+    }
+
     // background stripe
     Image {
         source: '../../assets/images/stripe.png';
@@ -51,11 +58,14 @@ Item {
             verticalCenter: parent.verticalCenter;
             left: parent.left;
             leftMargin: 30;
-            verticalCenterOffset: -5;
+            verticalCenterOffset: -50;
         }
     }
 
     Text {
+
+        id: gamesCount;
+
         text: filteredGamesCollection.count + ' games';
         color: theme.current.titleColor;
         opacity: 0.7;
@@ -73,6 +83,55 @@ Item {
             bold: true;
         }
     }
+
+    Text {
+        id: collectionSummary
+
+        text: collectionData.getSummary(modelData.shortName);
+        color: theme.current.titleColor
+        opacity: 0.7;
+        
+        anchors {
+            left: parent.left;
+            right: device.left
+            leftMargin: 30;
+            top: gamesCount.bottom;
+            topMargin: root.height * .02;
+            bottom: parent.bottom;
+            bottomMargin: 30;
+        }
+        
+        font {
+            pixelSize: root.height * .025 * theme.fontScale;
+            letterSpacing: -0.35;
+            bold: true;
+        }
+
+        MouseArea {
+            anchors.fill: parent;
+
+            onClicked: {
+                collectionListView.currentIndex = index;
+                onMorePressed();
+            }
+        }
+        
+        wrapMode: Text.WordWrap
+        elide: Text.ElideRight
+        horizontalAlignment: Text.AlignJustify
+    }
+
+    /*MoreButton {
+        pixelSize: parent.height * .04 * theme.fontScale;
+        visible: hasMoreButton;
+
+        anchors {
+            right: collectionSummary.right;
+            //rightMargin: 30;
+            bottom: collectionSummary.bottom;
+            bottomMargin: 15;
+        }
+    }*/
 
     SortFilterProxyModel {
         id: filteredGamesCollection;
@@ -108,7 +167,7 @@ Item {
         id: device;
 
         source: '../../assets/images/devices/' + collectionData.getImage(modelData.shortName) + '.png';
-        width: root.width * .60;
+        width: root.width * .40;
         height: root.height * .60;
         fillMode: Image.PreserveAspectFit;
         horizontalAlignment: Image.AlignHCenter;
@@ -118,7 +177,7 @@ Item {
 
         anchors {
             verticalCenter: parent.verticalCenter;
-            verticalCenterOffset: 10;
+            verticalCenterOffset: -20;
             right: parent.right;
             rightMargin: root.width * .02;
         }
