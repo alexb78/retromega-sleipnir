@@ -333,7 +333,7 @@ Item {
 
             width: parent.width;
             anchors {
-                bottom: lastPlayed.top;
+                bottom: genre.top;
             }
         }
 
