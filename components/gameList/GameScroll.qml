@@ -313,6 +313,30 @@ Item {
                 bottom: parent.bottom;
                 bottomMargin: vpx(20);
             }
+
+        Text {
+            id: system;
+            text: currentGame.collections.get(0).name;
+
+            color: theme.current.detailsColor;
+            opacity: .5;
+            elide: Text.ElideRight;
+            maximumLineCount: 1;
+            wrapMode: Text.WordWrap;
+            horizontalAlignment: Text.AlignHCenter;
+
+            font {
+                family: glyphs.name;
+                pixelSize: parent.height * .11 * theme.fontScale;
+                bold: false;
+            }
+
+            width: parent.width;
+            anchors {
+                bottom: lastPlayed.top;
+            }
+        }
+
         Text {
             id: genre;
             text: genreText;
