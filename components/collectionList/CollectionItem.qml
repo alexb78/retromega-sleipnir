@@ -98,7 +98,7 @@ Item {
             top: gamesCount.bottom;
             topMargin: root.height * .02;
             bottom: parent.bottom;
-            bottomMargin: 30;
+            bottomMargin: 75;
         }
         
         font {
@@ -177,7 +177,7 @@ Item {
 
         anchors {
             verticalCenter: parent.verticalCenter;
-            verticalCenterOffset: -20;
+            verticalCenterOffset: 25;
             right: parent.right;
             rightMargin: root.width * .02;
         }
