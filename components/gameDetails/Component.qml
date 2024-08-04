@@ -28,7 +28,6 @@ Item {
     }
 
     function onMediaPressed() {
-        //previousView = currentView;
         currentView = 'media';
         sounds.nav();
     }
@@ -37,11 +36,6 @@ Item {
         currentGame.favorite = !currentGame.favorite;
         favoritesChanged = true;
         sounds.nav();
-    }
-
-    function onAttractPressed() {
-        currentView = 'attract';
-        sounds.forward();
     }
 
     function detailsButtonClicked(button) {
@@ -107,7 +101,6 @@ Item {
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
             fullDescription.scrollUp();
-            onAttractPressed();
         }
     }
 
