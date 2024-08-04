@@ -118,12 +118,4 @@ Item {
             }
         }
     }
-
-    MouseArea {
-        anchors.fill: parent;
-
-        onClicked: {
-            detailsButtonClicked('less');
-        }
-    }
 }
