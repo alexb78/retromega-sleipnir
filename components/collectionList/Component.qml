@@ -59,6 +59,7 @@ Item {
     }
 
     function onAttractPressed() {
+        inAttractMode = true;
         currentView = 'attract';
         sounds.forward();
     }
