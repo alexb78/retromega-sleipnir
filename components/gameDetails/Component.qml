@@ -28,7 +28,7 @@ Item {
     }
 
     function onMediaPressed() {
-        previousView = currentView;
+        //previousView = currentView;
         currentView = 'media';
         sounds.nav();
     }
