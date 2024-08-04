@@ -35,7 +35,7 @@ Item {
         sounds.nav();
     }
 
-    function onDetailsPressed() {
+    function onMorePressed() {
         if (!currentGame.description) return;
 
         fullDescriptionShowing = true;
@@ -419,6 +419,14 @@ Item {
             rightMargin: vpx(20);
             bottom: detailsFooter.top;
             bottomMargin: vpx(20);
+        }
+
+        MouseArea {
+            anchors.fill: parent;
+
+            onClicked: {
+                onMorePressed();
+            }
         }
 
         Behavior on anchors.topMargin {
