@@ -14,7 +14,11 @@ Item {
             favoritesChanged = false;
         }
 
-        currentView = 'gameList';
+        if (inAttractMode) {
+            currentView = 'attract';
+        } else {
+            currentView = previousView;
+        }
         sounds.back();
     }
 
