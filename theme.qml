@@ -17,6 +17,7 @@ FocusScope {
     id: root;
 
     property bool debugRA: false;
+    property bool inAttractMode: false;
 
     property string currentView: 'collectionList';
     property string previousView: 'collectionList';

@@ -14,7 +14,11 @@ Item {
             favoritesChanged = false;
         }
 
-        currentView = 'gameList';
+        if (inAttractMode) {
+            currentView = 'attract';
+        } else {
+            currentView = previousView;
+        }
         sounds.back();
     }
 
@@ -24,7 +28,6 @@ Item {
     }
 
     function onMediaPressed() {
-        previousView = currentView;
         currentView = 'media';
         sounds.nav();
     }
@@ -54,7 +57,7 @@ Item {
         currentView = 'attract';
         sounds.forward();
     }
-
+    
     function detailsButtonClicked(button) {
         switch (button) {
             case 'play':
@@ -122,7 +125,6 @@ Item {
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
             fullDescription.scrollUp();
-            onAttractPressed();
         }
     }
 

@@ -23,6 +23,7 @@ Flickable {
     }
 
     function onCancelPressed() {
+        inAttractMode = false;
         currentView = 'collectionList';
         sounds.back();
     }
