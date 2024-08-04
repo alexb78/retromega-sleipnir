@@ -44,7 +44,7 @@ Additionally, there are some zip files including some images I chose not to use 
         - year: years of production
         - image: alternate image from a different collection
             - useful if multiple collections share an image, like arcade/atomiswave
-        -summary: Summary text displayed on collection item page.
+        - summary: Summary text displayed on collection item page.
         - any of these bits of metadata *may be excluded*, and the collection will still work
 - adjust `/components/collectionList/CollectionItem.qml` if necessary
     - you can adjust the image sizes [here](https://github.com/plaidman/retromega-next/blob/main/components/collectionList/CollectionItem.qml#L99-L100)
