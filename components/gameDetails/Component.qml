@@ -60,11 +60,15 @@ Item {
             case 'play':
                 onAcceptPressed();
                 break;
-
             case 'favorite':
                 onFiltersPressed();
                 break;
-
+            case 'more':
+                onMorePressed();
+                break;
+            case 'less':
+                hideFullDescription();
+                break;
         }
     }
 
@@ -425,7 +429,7 @@ Item {
             anchors.fill: parent;
 
             onClicked: {
-                onMorePressed();
+                detailsButtonClicked('more');
             }
         }
 
