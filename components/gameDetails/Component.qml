@@ -38,16 +38,40 @@ Item {
         sounds.nav();
     }
 
+    function onMorePressed() {
+        if (!currentGame.description) return;
+
+        fullDescriptionShowing = true;
+        fullDescription.anchors.topMargin = 0;
+        sounds.forward();
+    }
+
+    function hideFullDescription() {
+        fullDescriptionShowing = false;
+        fullDescription.anchors.topMargin = root.height;
+        fullDescription.resetFlickable();
+        sounds.back();
+    }
+
+    function onAttractPressed() {
+        currentView = 'attract';
+        sounds.forward();
+    }
+    
     function detailsButtonClicked(button) {
         switch (button) {
             case 'play':
                 onAcceptPressed();
                 break;
-
             case 'favorite':
                 onFiltersPressed();
                 break;
-
+            case 'more':
+                onMorePressed();
+                break;
+            case 'less':
+                hideFullDescription();
+                break;
         }
     }
 
@@ -401,6 +425,14 @@ Item {
             rightMargin: vpx(20);
             bottom: detailsFooter.top;
             bottomMargin: vpx(20);
+        }
+
+        MouseArea {
+            anchors.fill: parent;
+
+            onClicked: {
+                detailsButtonClicked('more');
+            }
         }
 
         Behavior on anchors.topMargin {
