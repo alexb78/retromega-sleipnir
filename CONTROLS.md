@@ -9,10 +9,10 @@ Most things are interactable in the header and footer. Try tapping on them!
 |`L1/R1`||move to beginning/end of list|
 |`A button`|`tap collection`|switch to games list|
 |`B button`||pegasus settings menu|
-|`X button`|`tap header icon`|retromega settings menu|
+|`X button`|`tap header icon`|Display more system summary text|
 ||`tap clock`|12/24 hour clock|
 |`R2`|`tap header icon`|open sorting screen|
-|`L2`|`tap footer icon`|attract mode|
+|`L2`|`tap footer icon`|attract mode of current selected system|
 
 ---
 
@@ -81,4 +81,4 @@ Most things are interactable in the header and footer. Try tapping on them!
 |`any dpad or y button`| |next video|
 |`A button`|`long press`|launch game|
 |`B button`|`swipe down`|back to collection view|
-|`X button`|`tap`|toggle video title|
+|`X button`|`tap`|game details screen|
