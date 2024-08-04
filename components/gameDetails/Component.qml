@@ -35,6 +35,21 @@ Item {
         sounds.nav();
     }
 
+    function onDetailsPressed() {
+        if (!currentGame.description) return;
+
+        fullDescriptionShowing = true;
+        fullDescription.anchors.topMargin = 0;
+        sounds.forward();
+    }
+
+    function hideFullDescription() {
+        fullDescriptionShowing = false;
+        fullDescription.anchors.topMargin = root.height;
+        fullDescription.resetFlickable();
+        sounds.back();
+    }
+
     function onAttractPressed() {
         currentView = 'attract';
         sounds.forward();
