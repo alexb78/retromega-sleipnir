@@ -5,8 +5,10 @@ import '../footer' as Footer
 import '../media' as Media
 
 Item {
+    id: details;
     anchors.fill: parent;
     property bool favoritesChanged: false;
+    property bool fullDescriptionShowing: false;
 
     function onCancelPressed() {
         if (favoritesChanged === true) {
@@ -17,7 +19,7 @@ Item {
         if (inAttractMode) {
             currentView = 'attract';
         } else {
-            currentView = previousView;
+            currentView = 'gameList';
         }
         sounds.back();
     }
@@ -28,6 +30,7 @@ Item {
     }
 
     function onMediaPressed() {
+        previousView = currentView;
         currentView = 'media';
         sounds.nav();
     }
@@ -52,11 +55,6 @@ Item {
         fullDescription.resetFlickable();
         sounds.back();
     }
-
-    function onAttractPressed() {
-        currentView = 'attract';
-        sounds.forward();
-    }
     
     function detailsButtonClicked(button) {
         switch (button) {
@@ -77,6 +75,10 @@ Item {
 
     Keys.onUpPressed: {
         event.accepted = true;
+        if(fullDescriptionShowing) {
+            fullDescription.scrollUp();
+            return;
+        }
         const updated = updateGameIndex(currentGameIndex - 1);
         if (updated) {
             sounds.nav();
@@ -87,6 +89,10 @@ Item {
 
     Keys.onDownPressed: {
         event.accepted = true;
+        if(fullDescriptionShowing) {
+            fullDescription.scrollDown();
+            return;
+        }
         const updated = updateGameIndex(currentGameIndex + 1);
         if (updated) {
             sounds.nav();
@@ -121,10 +127,12 @@ Item {
         if (api.keys.isPageDown(event)) {
             event.accepted = true;
             fullDescription.scrollDown();
+            gameDescription.scrollDown();
         }
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
             fullDescription.scrollUp();
+            gameDescription.scrollUp();
         }
     }
 
@@ -302,7 +310,7 @@ Item {
                 if (updated) {
                     sounds.nav();
                     infoPane.gameDetailsVideo.switchVideo();
-                    fullDescription.resetFlickable();
+                    gameDescription.resetFlickable();
                 }
             }
             if (verticalVelocity > 0) {
@@ -310,7 +318,7 @@ Item {
                 if (updated) {
                     sounds.nav();
                     infoPane.gameDetailsVideo.switchVideo();
-                    fullDescription.resetFlickable();
+                    gameDescription.resetFlickable();
                 }
             }
         }
@@ -414,7 +422,7 @@ Item {
 
     /* Description pane, scrollable */
     GameDescription {
-        id: fullDescription;
+        id: gameDescription;
 
         anchors {
             top: gameGfx.bottom;
@@ -449,17 +457,33 @@ Item {
             { title: 'Play', key: theme.buttonGuide.accept, square: false, sigValue: 'accept' },
             { title: 'Back', key: theme.buttonGuide.cancel, square: false, sigValue: 'cancel' },
             { title: 'Media', key: theme.buttonGuide.details, square: false, sigValue: 'media' },
-            { title: 'Favorite', key: theme.buttonGuide.filters, square: false, sigValue: 'filters' },
-            { title: 'Attract', key: theme.buttonGuide.pageUp, square: true, sigValue: 'attract' }
+            { title: 'Favorite', key: theme.buttonGuide.filters, square: false, sigValue: 'filters' }
         ];
 
         onFooterButtonClicked: {
             if (sigValue === 'accept') onAcceptPressed();
             if (sigValue === 'cancel') onCancelPressed();
             if (sigValue === 'filters') onFiltersPressed();
-            if (sigValue === 'attract') onAttractPressed();
             if (sigValue === 'media') onMediaPressed();
         }
     }
 
+    FullGameDescription {
+        id: fullDescription;
+
+        height: parent.height;
+        width: parent.width;
+        blurSource: details;
+
+        anchors {
+            top: parent.top;
+            topMargin: root.height;
+            left: parent.left;
+            right: parent.right;
+        }
+
+        Behavior on anchors.topMargin {
+            PropertyAnimation { easing.type: Easing.OutCubic; duration: 200; }
+        }
+    }
 }
