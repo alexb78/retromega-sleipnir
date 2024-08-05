@@ -217,12 +217,12 @@ FocusScope {
     property var allCollections: {
         const collections = api.collections.toVarArray();
 
-        if (settings.get('showFavorites')) {
-            collections.unshift({'name': 'Favorites', 'shortName': 'favorites', 'games': allFavorites});
-        }
-
         if (settings.get('showRecents')) {
             collections.unshift({'name': 'Last Played', 'shortName': 'recents', 'games': filterLastPlayed});
+        }
+
+        if (settings.get('showFavorites')) {
+            collections.unshift({'name': 'Favorites', 'shortName': 'favorites', 'games': allFavorites});
         }
 
         if (settings.get('showAllGames')) {
