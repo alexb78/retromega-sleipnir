@@ -89,6 +89,7 @@ Flickable {
     }
 
     function onDetailsPressed() {
+        previousView = currentView;
         currentView = 'gameDetails';
         sounds.forward();
     }
