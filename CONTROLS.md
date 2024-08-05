@@ -28,7 +28,7 @@ Most things are interactable in the header and footer. Try tapping on them!
 |`Y button`|`tap footer icon`|select random game|
 |`R1/L1`||skip to previous or next letter|
 |`R2`|`tap header icon`|open sorting screen|
-|`L2`|`tap footer icon`|mark game as favorite|
+|`L2`|`tap footer icon`|open game media viewer|
 
 ---
 
@@ -38,7 +38,8 @@ Most things are interactable in the header and footer. Try tapping on them!
 |`up/down`||change game|
 |`A button`|`tap play button`|launch game|
 |`B button`|`tap footer icon`|back to game list|
-|`X button`|`tap short description`|full description (if applicable)|
+|          |`tap short description`|full description (if applicable)|
+|`X button`|                  |open game media viewer|
 |`Y button`|`tap heart button`|toggle favorite|
 |`any button`|`tap screen`|back to details (from full description)|
 
