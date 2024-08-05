@@ -25,11 +25,11 @@ Item {
     Keys.onReleased: {
         if (api.keys.isPageDown(event)) {
             event.accepted = true;
-            fullDescription.scrollDown();
+            gameDescription.scrollDown();
         }
         if (api.keys.isPageUp(event)) {
             event.accepted = true;
-            fullDescription.scrollUp();
+            gameDescription.scrollUp();
         }
     }
 
@@ -82,7 +82,7 @@ Item {
             Text {
                 id: fullDesc;
 
-                width: fullDescription.width - flickable.leftMargin - flickable.rightMargin;
+                width: gameDescription.width - flickable.leftMargin - flickable.rightMargin;
                 text: fullDescText;
                 wrapMode: Text.WordWrap;
                 lineHeight: 1.2;
@@ -99,7 +99,7 @@ Item {
             Text {
                 id: fileDetails;
 
-                width: fullDescription.width - flickable.leftMargin - flickable.rightMargin;
+                width: gameDescription.width - flickable.leftMargin - flickable.rightMargin;
                 text: filenames;
                 wrapMode: Text.WordWrap;
                 lineHeight: 1.2;
