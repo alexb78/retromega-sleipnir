@@ -31,7 +31,7 @@ Flickable {
     function onDetailsPressed() {
         //settings.toggle('attractTitle');
         //showTitle = settings.get('attractTitle');
-        //previousView = 'attract'
+        previousView = 'attract'
         currentView = 'gameDetails';
         sounds.forward();
     }
