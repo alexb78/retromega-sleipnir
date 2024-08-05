@@ -40,7 +40,8 @@ There is also this video guide [available here](https://www.youtube.com/watch?v=
 
 ## Features added in this repo
 - Display additional assets in fullscreen: video, front and back box art, screen shot, title screen and cartridge. Note: Parts of the code taken from MediaView component of gameOS theme by Seth Powell.
-- Display collection summary text. Note: Parts of the code taken from Colorful theme by RobZombie. 
+- Display collection summary text. Note: Parts of the code taken from Colorful theme by RobZombie.
+- Features added from original retro mega (header navigation, full screen game description, ...
 
 ---
 
