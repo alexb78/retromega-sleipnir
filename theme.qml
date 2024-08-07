@@ -77,10 +77,10 @@ FocusScope {
     function updateSortedCollection() {
         if (currentShortName === 'favorites') {
             currentGameList = allFavorites;
-            setHomeIndex(2);
+            setHomeIndex(1);
         } else if (currentShortName === 'recents') {
             currentGameList = filterLastPlayed;
-            setHomeIndex(1);
+            setHomeIndex(2);
         } else {
             currentGameList = sortedCollection;
             setHomeIndex(0);
