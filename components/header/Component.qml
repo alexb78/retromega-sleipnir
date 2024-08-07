@@ -103,7 +103,7 @@ Rectangle {
 
         visible: showHeaderLink;
         title: "Favorites"
-        index: 2
+        index: 1
         anchors.left: title_systems.right
         anchors.top: parent.top
         anchors.topMargin: 16
@@ -130,7 +130,7 @@ Rectangle {
 
         visible: showHeaderLink;
         title: "Last Played"
-        index: 1
+        index: 2
         anchors.left: title_favorites.right
         anchors.top: parent.top
         anchors.topMargin: 16
