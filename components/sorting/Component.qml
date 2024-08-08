@@ -70,10 +70,21 @@ Item {
     }
 
     function onClearPressed() {
-        if (!nameFilterShowing) return;
-
-        nameFilterModal.textInput.clear();
-        onAcceptPressed();
+        if (nameFilterShowing) {
+            nameFilterModal.textInput.clear();
+            onAcceptPressed();
+        };
+        if (!nameFilterShowing) {
+            const currentKey = sorting.model.get(sortingScroll.sortingListView.currentIndex).key;
+            if (currentKey === 'gameType' || currentKey === 'regionType') {
+                sorting.executeCallbackClear(currentKey);
+            }
+            else if (currentKey === 'nameFilter') {
+                nameFilterModal.textInput.clear();
+                nameFilter = nameFilterModal.textInput.text;
+            }
+            else return;
+        };
     }
 
     Keys.onPressed: {
@@ -122,11 +133,13 @@ Item {
             buttons: [
                 { title: 'Toggle', key: theme.buttonGuide.accept, square: false, sigValue: 'accept' },
                 { title: 'Back', key: theme.buttonGuide.cancel, square: false, sigValue: 'cancel' },
+                { title: 'Clear', key: theme.buttonGuide.details, square: false, sigValue: 'clear' },
             ];
 
             onFooterButtonClicked: {
                 if (sigValue === 'accept') onAcceptPressed();
                 if (sigValue === 'cancel') onCancelPressed();
+                if (sigValue === 'clear') onClearPressed();
             }
         }
 
