@@ -66,8 +66,14 @@ Item {
 
         ListElement {
             key: 'regionType';
-            title: 'Region Type:';
+            title: 'Region:';
             type: 'regionType';
+        }
+        
+        ListElement {
+            key: 'genreType';
+            title: 'Genre:';
+            type: 'genreType';
         }
     }
 
@@ -102,6 +108,7 @@ Item {
             onlyUSA: () => { onlyUSA = !onlyUSA; },
             gameType: () => { gameTypeIndex = (gameTypeIndex + 1) %gameTypes.length ; gameType = gameTypes[gameTypeIndex] ;},
             regionType: () => { regionTypeIndex = (regionTypeIndex + 1) %regionTypes.length ; regionType = regionTypes[regionTypeIndex] ;},
+            genreType: () => { genreTypeIndex = (genreTypeIndex + 1) %genreTypes.length ; genreType = genreTypes[genreTypeIndex] ;},
         };
 
         callbacks[key]();
@@ -111,6 +118,7 @@ Item {
         const callbacks = {
             gameType: () => { gameTypeIndex = 0 ; gameType = gameTypes[gameTypeIndex] ;},
             regionType: () => { regionTypeIndex = 0 ; regionType = regionTypes[regionTypeIndex] ;},
+            genreType: () => { genreTypeIndex = 0 ; genreType = genreTypes[genreTypeIndex] ;},
         };
 
         callbacks[key]();

@@ -142,6 +142,7 @@ Item {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
+            ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }
