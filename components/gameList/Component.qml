@@ -86,7 +86,9 @@ Flickable {
         currentView = 'collectionList';
         updateGameIndex(0, true);
         sounds.back();
-    }
+        genreTypeIndex = 0;
+        genreType = genreTypes[genreTypeIndex];
+}
 
     function onDetailsPressed() {
         previousView = currentView;
