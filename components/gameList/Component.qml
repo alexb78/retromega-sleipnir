@@ -195,6 +195,7 @@ Flickable {
     Keys.onReleased: {
         // R2
         if (api.keys.isPageDown(event)) {
+            genreTypes = uniqueGameValues('genreList');
             event.accepted = true;
             previousView = currentView;
             currentView = 'sorting';

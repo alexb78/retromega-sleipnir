@@ -43,7 +43,7 @@ FocusScope {
     property var regionTypes: ['', 'USA', 'EUR', 'JPN', 'WORLD']
     property int regionTypeIndex: 0;
     property string genreType: '';
-    property var genreTypes: ['', 'Platform']
+    property var genreTypes: [''];
     property int genreTypeIndex: 0;
     property bool onlyMultiplayer: false;
     property bool favoritesOnTop: false;
@@ -59,6 +59,15 @@ FocusScope {
 
     function addCurrentViewCallback(callback) {
         currentViewCallbacks.push(callback);
+    }
+
+    function uniqueGameValues(fieldName) {
+        const set = new Set();
+        set.add('');
+        currentCollection.games.toVarArray().forEach(game => {
+            game[fieldName].forEach(v => set.add(v));
+        });
+        return [...set.values()].sort();
     }
 
     onCurrentViewChanged: {
@@ -268,7 +277,7 @@ FocusScope {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
-            ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
+            //ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
         sorters: RoleSorter { roleName: sortKey; sortOrder: sortDir }
@@ -283,7 +292,7 @@ FocusScope {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
-            ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
+            //ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; },
             ExpressionFilter {
                 expression: {

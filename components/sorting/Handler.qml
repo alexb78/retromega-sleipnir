@@ -106,9 +106,18 @@ Item {
             onlyMultiplayer: () => { onlyMultiplayer = !onlyMultiplayer; },
             onlyRetail: () => { onlyRetail = !onlyRetail; },
             onlyUSA: () => { onlyUSA = !onlyUSA; },
-            gameType: () => { gameTypeIndex = (gameTypeIndex + 1) %gameTypes.length ; gameType = gameTypes[gameTypeIndex] ;},
-            regionType: () => { regionTypeIndex = (regionTypeIndex + 1) %regionTypes.length ; regionType = regionTypes[regionTypeIndex] ;},
-            genreType: () => { genreTypeIndex = (genreTypeIndex + 1) %genreTypes.length ; genreType = genreTypes[genreTypeIndex] ;},
+            gameType: () => { 
+                gameTypeIndex = (gameTypeIndex + 1) %gameTypes.length ;
+                gameType = gameTypes[gameTypeIndex] ;
+            },
+            regionType: () => { 
+                regionTypeIndex = (regionTypeIndex + 1) %regionTypes.length ; 
+                regionType = regionTypes[regionTypeIndex] ;
+            },
+            genreType: () => { 
+                genreTypeIndex = (genreTypeIndex + 1) %genreTypes.length ; 
+                genreType = genreTypes[genreTypeIndex] ;
+            },
         };
 
         callbacks[key]();

@@ -143,6 +143,7 @@ Item {
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
             ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
+            //ExpressionFilter { enabled: allowedGenres.length; expression: allowedGenres && genreList.some(v => allowedGenres.includes(v))},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }
