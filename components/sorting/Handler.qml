@@ -12,6 +12,24 @@ Item {
         }
 
         ListElement {
+            key: 'genreType';
+            title: 'Genre:';
+            type: 'genreType';
+        }
+        
+        ListElement {
+            key: 'gameType';
+            title: 'Game Type:';
+            type: 'gameType';
+        }
+
+        ListElement {
+            key: 'regionType';
+            title: 'Region:';
+            type: 'regionType';
+        }
+        
+        ListElement {
             key: 'sortBy';
             title: 'Title';
             type: 'sort';
@@ -56,24 +74,6 @@ Item {
             key: 'onlyMultiplayer';
             title: 'Only Multiplayer';
             type: 'onlyMultiplayer';
-        }
-
-        ListElement {
-            key: 'gameType';
-            title: 'Game Type:';
-            type: 'gameType';
-        }
-
-        ListElement {
-            key: 'regionType';
-            title: 'Region:';
-            type: 'regionType';
-        }
-        
-        ListElement {
-            key: 'genreType';
-            title: 'Genre:';
-            type: 'genreType';
         }
     }
 
