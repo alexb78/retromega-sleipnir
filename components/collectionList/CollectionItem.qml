@@ -142,8 +142,10 @@ Item {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
-            ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
-            //ExpressionFilter { enabled: allowedGenres.length; expression: allowedGenres && genreList.some(v => allowedGenres.includes(v))},
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }

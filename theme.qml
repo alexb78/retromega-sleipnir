@@ -61,13 +61,18 @@ FocusScope {
         currentViewCallbacks.push(callback);
     }
 
-    function uniqueGameValues(fieldName) {
-        const set = new Set();
-        set.add('');
-        currentCollection.games.toVarArray().forEach(game => {
-            game[fieldName].forEach(v => set.add(v));
-        });
-        return [...set.values()].sort();
+    function getGenres() {
+        let genres = new Set();
+        genres.add('');
+        for (let i = 0; i < currentCollection.games.count; i++) {
+            let genreList = currentCollection.games.get(i).genre.replace(/ ?\/ ?|,/g, ",").split(",")
+            genreList.forEach(function(genre){
+                if(genre)
+                    genres.add(genre.trim())
+            })
+        }
+        genres = Array.from(genres).sort()
+        return genres
     }
 
     onCurrentViewChanged: {
@@ -277,7 +282,10 @@ FocusScope {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
-            //ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
         sorters: RoleSorter { roleName: sortKey; sortOrder: sortDir }
@@ -292,7 +300,10 @@ FocusScope {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
-            //ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},            
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; },
             ExpressionFilter {
                 expression: {
@@ -324,7 +335,10 @@ FocusScope {
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
             ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
             ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
-            ExpressionFilter { enabled: genreType; expression: { return genreList.includes(genreType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }

@@ -110,7 +110,11 @@ Flickable {
 
         sourceModel: currentCollection.games;
         filters: [
-            ExpressionFilter { expression: { assets.video !== ''; } }
+            ExpressionFilter { expression: { assets.video !== ''; } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }}
         ]
     }
 

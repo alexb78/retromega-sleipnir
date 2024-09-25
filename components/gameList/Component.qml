@@ -86,8 +86,8 @@ Flickable {
         currentView = 'collectionList';
         updateGameIndex(0, true);
         sounds.back();
-        genreTypeIndex = 0;
-        genreType = genreTypes[genreTypeIndex];
+        //genreTypeIndex = 0;
+        //genreType = genreTypes[genreTypeIndex];
 }
 
     function onDetailsPressed() {
@@ -195,7 +195,7 @@ Flickable {
     Keys.onReleased: {
         // R2
         if (api.keys.isPageDown(event)) {
-            genreTypes = uniqueGameValues('genreList');
+            genreTypes = getGenres();
             event.accepted = true;
             previousView = currentView;
             currentView = 'sorting';
