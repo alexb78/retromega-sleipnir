@@ -106,6 +106,16 @@ Item {
         }
 
         DelegateChoice {
+            roleValue: 'devType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: devType;
+            }
+        }
+
+        DelegateChoice {
             roleValue: 'nameFilter';
 
             NameFilterItem {

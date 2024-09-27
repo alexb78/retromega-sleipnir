@@ -16,6 +16,12 @@ Item {
             title: 'Genre:';
             type: 'genreType';
         }
+
+        ListElement {
+            key: 'devType';
+            title: 'Developer:';
+            type: 'devType';
+        }
         
         ListElement {
             key: 'gameType';
@@ -118,6 +124,10 @@ Item {
                 genreTypeIndex = (genreTypeIndex + 1) %genreTypes.length ; 
                 genreType = genreTypes[genreTypeIndex] ;
             },
+            devType: () => { 
+                devTypeIndex = (devTypeIndex + 1) %devTypes.length ; 
+                devType = devTypes[devTypeIndex] ;
+            }
         };
 
         callbacks[key]();
@@ -128,6 +138,7 @@ Item {
             gameType: () => { gameTypeIndex = 0 ; gameType = gameTypes[gameTypeIndex] ;},
             regionType: () => { regionTypeIndex = 0 ; regionType = regionTypes[regionTypeIndex] ;},
             genreType: () => { genreTypeIndex = 0 ; genreType = genreTypes[genreTypeIndex] ;},
+            devType: () => { devTypeIndex = 0 ; devType = devTypes[devTypeIndex] ;},
         };
 
         callbacks[key]();
