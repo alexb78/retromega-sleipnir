@@ -45,6 +45,9 @@ FocusScope {
     property string genreType: '';
     property var genreTypes: [''];
     property int genreTypeIndex: 0;
+    property string devType: '';
+    property var devTypes: [''];
+    property int devTypeIndex: 0;
     property bool onlyMultiplayer: false;
     property bool favoritesOnTop: false;
     property string sortKey: 'sortBy';
@@ -65,7 +68,7 @@ FocusScope {
         let genres = new Set();
         genres.add('');
         for (let i = 0; i < currentCollection.games.count; i++) {
-            let genreList = currentCollection.games.get(i).genre.replace(/ ?\/ ?|,/g, ",").split(",")
+            let genreList = currentCollection.games.get(i).genre.replace(/ ?\/ ?|-/g, ",").split(",")
             genreList.forEach(function(genre){
                 if(genre)
                     genres.add(genre.trim())
@@ -73,6 +76,20 @@ FocusScope {
         }
         genres = Array.from(genres).sort()
         return genres
+    }
+
+    function getDevelopers() {
+        let devs = new Set();
+        devs.add('');
+        for (let i = 0; i < currentCollection.games.count; i++) {
+            let devsList = currentCollection.games.get(i).developer.split(",")
+            devsList.forEach(function(developer){
+                if(developer)
+                    devs.add(developer.trim())
+            })
+        }
+        devs = Array.from(devs).sort()
+        return devs
     }
 
     onCurrentViewChanged: {
@@ -102,10 +119,10 @@ FocusScope {
     function updateSortedCollection() {
         if (currentShortName === 'favorites') {
             currentGameList = allFavorites;
-            setHomeIndex(2);
+            setHomeIndex(1);
         } else if (currentShortName === 'recents') {
             currentGameList = filterLastPlayed;
-            setHomeIndex(1);
+            setHomeIndex(2);
         } else {
             currentGameList = sortedCollection;
             setHomeIndex(0);
@@ -195,6 +212,7 @@ FocusScope {
         gameType = api.memory.get('gameType') ?? '';
         regionType = api.memory.get('regionType') ?? '';
         genreType = api.memory.get('genreType') ?? '';
+        devType = api.memory.get('devType') ?? '';
         sortKey = api.memory.get('sortKey') ?? 'sortBy';
         sortDir = api.memory.get('sortDir') ?? Qt.AscendingOrder;
         nameFilter = api.memory.get('nameFilter') ?? '';
@@ -236,6 +254,7 @@ FocusScope {
         api.memory.set('gameType', gameType);
         api.memory.set('regionType', regionType);
         api.memory.set('genreType', genreType);
+        api.memory.set('devType', devType);
         api.memory.set('sortKey', sortKey);
         api.memory.set('sortDir', sortDir);
         api.memory.set('nameFilter', nameFilter);
@@ -286,6 +305,10 @@ FocusScope {
                 var re = new RegExp(".*" + genreType + ".*");
                 return re.test(genre);
             }},
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
         sorters: RoleSorter { roleName: sortKey; sortOrder: sortDir }
@@ -304,6 +327,10 @@ FocusScope {
                 var re = new RegExp(".*" + genreType + ".*");
                 return re.test(genre);
             }},            
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; },
             ExpressionFilter {
                 expression: {
@@ -338,6 +365,10 @@ FocusScope {
             ExpressionFilter { enabled: genreType; expression: { 
                 var re = new RegExp(".*" + genreType + ".*");
                 return re.test(genre);
+            }},
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
             }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]

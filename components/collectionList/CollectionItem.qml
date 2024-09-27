@@ -146,6 +146,10 @@ Item {
                 var re = new RegExp(".*" + genreType + ".*");
                 return re.test(genre);
             }},
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }

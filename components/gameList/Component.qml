@@ -7,9 +7,9 @@ Flickable {
     anchors.fill: parent;
 
     property bool showHeaderLinkItems: {
-        return currentCollection.shortName === 'favorites' 
-            || currentCollection.shortName === 'allgames' 
-            || currentCollection.shortName === 'recents';
+        return (currentCollection.shortName === 'favorites' && settings.get('showFavorites'))
+            || (currentCollection.shortName === 'allgames') 
+            || (currentCollection.shortName === 'recents' && settings.get('showRecents'));
     }
 
     flickableDirection: Flickable.HorizontalFlick
@@ -196,6 +196,7 @@ Flickable {
         // R2
         if (api.keys.isPageDown(event)) {
             genreTypes = getGenres();
+            devTypes = getDevelopers();
             event.accepted = true;
             previousView = currentView;
             currentView = 'sorting';

@@ -76,7 +76,7 @@ Item {
         };
         if (!nameFilterShowing) {
             const currentKey = sorting.model.get(sortingScroll.sortingListView.currentIndex).key;
-            if (currentKey === 'gameType' || currentKey === 'regionType' || currentKey === 'genreType') {
+            if (currentKey === 'gameType' || currentKey === 'regionType' || currentKey === 'genreType' || currentKey === 'devType') {
                 sorting.executeCallbackClear(currentKey);
             }
             else if (currentKey === 'nameFilter') {
