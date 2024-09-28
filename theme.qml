@@ -48,6 +48,9 @@ FocusScope {
     property string devType: '';
     property var devTypes: [''];
     property int devTypeIndex: 0;
+    property string pubType: '';
+    property var pubTypes: [''];
+    property int pubTypeIndex: 0;
     property bool onlyMultiplayer: false;
     property bool favoritesOnTop: false;
     property string sortKey: 'sortBy';
@@ -90,6 +93,20 @@ FocusScope {
         }
         devs = Array.from(devs).sort()
         return devs
+    }
+
+    function getPublishers() {
+        let pubs = new Set();
+        pubs.add('');
+        for (let i = 0; i < currentCollection.games.count; i++) {
+            let pubsList = currentCollection.games.get(i).publisherList
+            pubsList.forEach(function(publisher){
+                if(publisher)
+                    pubs.add(publisher.trim())
+            })
+        }
+        pubs = Array.from(pubs).sort()
+        return pubs
     }
 
     onCurrentViewChanged: {
@@ -213,6 +230,7 @@ FocusScope {
         regionType = api.memory.get('regionType') ?? '';
         genreType = api.memory.get('genreType') ?? '';
         devType = api.memory.get('devType') ?? '';
+        pubType = api.memory.get('pubType') ?? '';
         sortKey = api.memory.get('sortKey') ?? 'sortBy';
         sortDir = api.memory.get('sortDir') ?? Qt.AscendingOrder;
         nameFilter = api.memory.get('nameFilter') ?? '';
@@ -255,6 +273,7 @@ FocusScope {
         api.memory.set('regionType', regionType);
         api.memory.set('genreType', genreType);
         api.memory.set('devType', devType);
+        api.memory.set('pubType', devType);
         api.memory.set('sortKey', sortKey);
         api.memory.set('sortDir', sortDir);
         api.memory.set('nameFilter', nameFilter);
@@ -309,6 +328,10 @@ FocusScope {
                 var re = new RegExp(".*" + devType + ".*");
                 return re.test(developer);
             }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
         sorters: RoleSorter { roleName: sortKey; sortOrder: sortDir }
@@ -330,6 +353,10 @@ FocusScope {
             ExpressionFilter { enabled: devType; expression: { 
                 var re = new RegExp(".*" + devType + ".*");
                 return re.test(developer);
+            }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
             }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; },
             ExpressionFilter {
@@ -369,6 +396,10 @@ FocusScope {
             ExpressionFilter { enabled: devType; expression: { 
                 var re = new RegExp(".*" + devType + ".*");
                 return re.test(developer);
+            }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
             }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]

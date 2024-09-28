@@ -197,6 +197,7 @@ Flickable {
         if (api.keys.isPageDown(event)) {
             genreTypes = getGenres();
             devTypes = getDevelopers();
+            pubTypes = getPublishers();
             event.accepted = true;
             previousView = currentView;
             currentView = 'sorting';

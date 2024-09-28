@@ -22,6 +22,12 @@ Item {
             title: 'Developer:';
             type: 'devType';
         }
+
+        ListElement {
+            key: 'pubType';
+            title: 'Publisher:';
+            type: 'pubType';
+        }
         
         ListElement {
             key: 'gameType';
@@ -127,6 +133,10 @@ Item {
             devType: () => { 
                 devTypeIndex = (devTypeIndex + 1) %devTypes.length ; 
                 devType = devTypes[devTypeIndex] ;
+            },
+            pubType: () => { 
+                pubTypeIndex = (pubTypeIndex + 1) %pubTypes.length ; 
+                pubType = pubTypes[pubTypeIndex] ;
             }
         };
 
@@ -139,6 +149,7 @@ Item {
             regionType: () => { regionTypeIndex = 0 ; regionType = regionTypes[regionTypeIndex] ;},
             genreType: () => { genreTypeIndex = 0 ; genreType = genreTypes[genreTypeIndex] ;},
             devType: () => { devTypeIndex = 0 ; devType = devTypes[devTypeIndex] ;},
+            pubType: () => { pubTypeIndex = 0 ; pubType = pubTypes[pubTypeIndex] ;},
         };
 
         callbacks[key]();

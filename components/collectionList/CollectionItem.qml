@@ -150,6 +150,10 @@ Item {
                 var re = new RegExp(".*" + devType + ".*");
                 return re.test(developer);
             }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }

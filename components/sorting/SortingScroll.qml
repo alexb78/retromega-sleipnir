@@ -116,6 +116,16 @@ Item {
         }
 
         DelegateChoice {
+            roleValue: 'pubType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: pubType;
+            }
+        }
+
+        DelegateChoice {
             roleValue: 'nameFilter';
 
             NameFilterItem {
