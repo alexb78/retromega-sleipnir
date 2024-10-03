@@ -95,6 +95,7 @@ Item {
             left: parent.left;
             right: device.left
             leftMargin: 30;
+            rightMargin: 30;
             top: gamesCount.bottom;
             topMargin: root.height * .02;
             bottom: parent.bottom;
@@ -102,7 +103,7 @@ Item {
         }
         
         font {
-            pixelSize: root.height * .025 * theme.fontScale;
+            pixelSize: root.height * .03 * theme.fontScale;
             letterSpacing: -0.35;
             bold: true;
         }
