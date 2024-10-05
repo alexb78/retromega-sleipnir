@@ -34,6 +34,23 @@ FocusScope {
     property bool cheevosEnabled: false;
 
     property bool onlyFavorites: false;
+    property bool onlyRetail: false;
+    property bool onlyUSA: false;
+    property string gameType: '';
+    property var gameTypes: ['', 'Retail', 'Translations', 'Hacks', 'Unlicensed', 'Aftermarket', 'Prototype', 'Pirated', 'Sample', 'Beta', 'Bad', 'Demo']
+    property int gameTypeIndex: 0;
+    property string regionType: '';
+    property var regionTypes: ['', 'USA', 'EUR', 'JPN', 'WORLD']
+    property int regionTypeIndex: 0;
+    property string genreType: '';
+    property var genreTypes: [''];
+    property int genreTypeIndex: 0;
+    property string devType: '';
+    property var devTypes: [''];
+    property int devTypeIndex: 0;
+    property string pubType: '';
+    property var pubTypes: [''];
+    property int pubTypeIndex: 0;
     property bool onlyMultiplayer: false;
     property bool favoritesOnTop: false;
     property string sortKey: 'sortBy';
@@ -48,6 +65,48 @@ FocusScope {
 
     function addCurrentViewCallback(callback) {
         currentViewCallbacks.push(callback);
+    }
+
+    function getGenres() {
+        let genres = new Set();
+        genres.add('');
+        for (let i = 0; i < currentCollection.games.count; i++) {
+            let genreList = currentCollection.games.get(i).genre.replace(/ ?\/ ?|-/g, ",").split(",")
+            genreList.forEach(function(genre){
+                if(genre)
+                    genres.add(genre.trim())
+            })
+        }
+        genres = Array.from(genres).sort()
+        return genres
+    }
+
+    function getDevelopers() {
+        let devs = new Set();
+        devs.add('');
+        for (let i = 0; i < currentCollection.games.count; i++) {
+            let devsList = currentCollection.games.get(i).developer.split(",")
+            devsList.forEach(function(developer){
+                if(developer)
+                    devs.add(developer.trim())
+            })
+        }
+        devs = Array.from(devs).sort()
+        return devs
+    }
+
+    function getPublishers() {
+        let pubs = new Set();
+        pubs.add('');
+        for (let i = 0; i < currentCollection.games.count; i++) {
+            let pubsList = currentCollection.games.get(i).publisherList
+            pubsList.forEach(function(publisher){
+                if(publisher)
+                    pubs.add(publisher.trim())
+            })
+        }
+        pubs = Array.from(pubs).sort()
+        return pubs
     }
 
     onCurrentViewChanged: {
@@ -167,6 +226,11 @@ FocusScope {
 
         onlyFavorites = api.memory.get('onlyFavorites') ?? false;
         onlyMultiplayer = api.memory.get('onlyMultiplayer') ?? false;
+        gameType = api.memory.get('gameType') ?? '';
+        regionType = api.memory.get('regionType') ?? '';
+        genreType = api.memory.get('genreType') ?? '';
+        devType = api.memory.get('devType') ?? '';
+        pubType = api.memory.get('pubType') ?? '';
         sortKey = api.memory.get('sortKey') ?? 'sortBy';
         sortDir = api.memory.get('sortDir') ?? Qt.AscendingOrder;
         nameFilter = api.memory.get('nameFilter') ?? '';
@@ -205,6 +269,11 @@ FocusScope {
 
         api.memory.set('onlyFavorites', onlyFavorites);
         api.memory.set('onlyMultiplayer', onlyMultiplayer);
+        api.memory.set('gameType', gameType);
+        api.memory.set('regionType', regionType);
+        api.memory.set('genreType', genreType);
+        api.memory.set('devType', devType);
+        api.memory.set('pubType', devType);
         api.memory.set('sortKey', sortKey);
         api.memory.set('sortDir', sortDir);
         api.memory.set('nameFilter', nameFilter);
@@ -249,6 +318,20 @@ FocusScope {
         filters: [
             ValueFilter { roleName: 'favorite'; value: true; },
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
+            ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
+            ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
         sorters: RoleSorter { roleName: sortKey; sortOrder: sortDir }
@@ -261,6 +344,20 @@ FocusScope {
         filters: [
             ValueFilter { roleName: 'favorite'; value: true; enabled: onlyFavorites; },
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
+            ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
+            ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},            
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; },
             ExpressionFilter {
                 expression: {
@@ -290,6 +387,20 @@ FocusScope {
         filters: [
             ValueFilter { roleName: 'favorite'; value: true; enabled: onlyFavorites; },
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
+            ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
+            ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }

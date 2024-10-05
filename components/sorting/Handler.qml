@@ -12,6 +12,36 @@ Item {
         }
 
         ListElement {
+            key: 'genreType';
+            title: 'Genre:';
+            type: 'genreType';
+        }
+
+        ListElement {
+            key: 'devType';
+            title: 'Developer:';
+            type: 'devType';
+        }
+
+        ListElement {
+            key: 'pubType';
+            title: 'Publisher:';
+            type: 'pubType';
+        }
+        
+        ListElement {
+            key: 'gameType';
+            title: 'Game Type:';
+            type: 'gameType';
+        }
+
+        ListElement {
+            key: 'regionType';
+            title: 'Region:';
+            type: 'regionType';
+        }
+        
+        ListElement {
             key: 'sortBy';
             title: 'Title';
             type: 'sort';
@@ -86,6 +116,40 @@ Item {
             favorite: updateSort('favorite', Qt.DescendingOrder),
             onlyFavorites: () => { onlyFavorites = !onlyFavorites; },
             onlyMultiplayer: () => { onlyMultiplayer = !onlyMultiplayer; },
+            onlyRetail: () => { onlyRetail = !onlyRetail; },
+            onlyUSA: () => { onlyUSA = !onlyUSA; },
+            gameType: () => { 
+                gameTypeIndex = (gameTypeIndex + 1) %gameTypes.length ;
+                gameType = gameTypes[gameTypeIndex] ;
+            },
+            regionType: () => { 
+                regionTypeIndex = (regionTypeIndex + 1) %regionTypes.length ; 
+                regionType = regionTypes[regionTypeIndex] ;
+            },
+            genreType: () => { 
+                genreTypeIndex = (genreTypeIndex + 1) %genreTypes.length ; 
+                genreType = genreTypes[genreTypeIndex] ;
+            },
+            devType: () => { 
+                devTypeIndex = (devTypeIndex + 1) %devTypes.length ; 
+                devType = devTypes[devTypeIndex] ;
+            },
+            pubType: () => { 
+                pubTypeIndex = (pubTypeIndex + 1) %pubTypes.length ; 
+                pubType = pubTypes[pubTypeIndex] ;
+            }
+        };
+
+        callbacks[key]();
+    }
+    
+    function executeCallbackClear(key) {
+        const callbacks = {
+            gameType: () => { gameTypeIndex = 0 ; gameType = gameTypes[gameTypeIndex] ;},
+            regionType: () => { regionTypeIndex = 0 ; regionType = regionTypes[regionTypeIndex] ;},
+            genreType: () => { genreTypeIndex = 0 ; genreType = genreTypes[genreTypeIndex] ;},
+            devType: () => { devTypeIndex = 0 ; devType = devTypes[devTypeIndex] ;},
+            pubType: () => { pubTypeIndex = 0 ; pubType = pubTypes[pubTypeIndex] ;},
         };
 
         callbacks[key]();

@@ -74,7 +74,7 @@ Rectangle {
     HeaderLink {
         id: title_systems
 
-        visible: showHeaderLink;
+        visible: showHeaderLink ;
         title: "Systems"
         index: 0
         anchors.left: parent.left
@@ -85,7 +85,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent;
             onClicked: {
-                updateCollectionIndex(3);
+                updateCollectionIndex(0);
                 updateSortedCollection();
                 //currentShortName = 'allgames';
                 currentView = 'collectionList';
@@ -101,7 +101,7 @@ Rectangle {
     HeaderLink {
         id: title_favorites
 
-        visible: showHeaderLink;
+        visible: showHeaderLink && settings.get('showFavorites');
         title: "Favorites"
         index: 1
         anchors.left: title_systems.right
@@ -128,7 +128,7 @@ Rectangle {
     HeaderLink {
         id: title_recent
 
-        visible: showHeaderLink;
+        visible: showHeaderLink && settings.get('showRecents');
         title: "Last Played"
         index: 2
         anchors.left: title_favorites.right

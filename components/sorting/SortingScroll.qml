@@ -76,6 +76,56 @@ Item {
         }
 
         DelegateChoice {
+            roleValue: 'gameType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: gameType;
+            }
+        }
+
+        DelegateChoice {
+            roleValue: 'regionType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: regionType;
+            }
+        }
+
+        DelegateChoice {
+            roleValue: 'genreType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: genreType;
+            }
+        }
+
+        DelegateChoice {
+            roleValue: 'devType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: devType;
+            }
+        }
+
+        DelegateChoice {
+            roleValue: 'pubType';
+
+            ListFilterItem {
+                width: sortingListView.width;
+                height: itemHeight;
+                value: pubType;
+            }
+        }
+
+        DelegateChoice {
             roleValue: 'nameFilter';
 
             NameFilterItem {

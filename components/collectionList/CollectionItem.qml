@@ -95,6 +95,7 @@ Item {
             left: parent.left;
             right: device.left
             leftMargin: 30;
+            rightMargin: 30;
             top: gamesCount.bottom;
             topMargin: root.height * .02;
             bottom: parent.bottom;
@@ -102,7 +103,7 @@ Item {
         }
         
         font {
-            pixelSize: root.height * .025 * theme.fontScale;
+            pixelSize: root.height * .03 * theme.fontScale;
             letterSpacing: -0.35;
             bold: true;
         }
@@ -140,6 +141,20 @@ Item {
         filters: [
             ValueFilter { roleName: 'favorite'; value: true; enabled: onlyFavorites; },
             ExpressionFilter { enabled: onlyMultiplayer; expression: { return players > 1; } },
+            ExpressionFilter { enabled: gameType; expression: { return tagList.includes(gameType); } },
+            ExpressionFilter { enabled: regionType; expression: { return tagList.includes(regionType); } },
+            ExpressionFilter { enabled: genreType; expression: { 
+                var re = new RegExp(".*" + genreType + ".*");
+                return re.test(genre);
+            }},
+            ExpressionFilter { enabled: devType; expression: { 
+                var re = new RegExp(".*" + devType + ".*");
+                return re.test(developer);
+            }},
+            ExpressionFilter { enabled: pubType; expression: { 
+                var re = new RegExp(".*" + pubType + ".*");
+                return re.test(publisher);
+            }},
             RegExpFilter { roleName: 'title'; pattern: nameFilter; caseSensitivity: Qt.CaseInsensitive; enabled: nameFilter !== ''; }
         ]
     }

@@ -7,9 +7,9 @@ Flickable {
     anchors.fill: parent;
 
     property bool showHeaderLinkItems: {
-        return currentCollection.shortName === 'favorites' 
-            || currentCollection.shortName === 'allgames' 
-            || currentCollection.shortName === 'recents';
+        return (currentCollection.shortName === 'favorites' && settings.get('showFavorites'))
+            || (currentCollection.shortName === 'allgames') 
+            || (currentCollection.shortName === 'recents' && settings.get('showRecents'));
     }
 
     flickableDirection: Flickable.HorizontalFlick
@@ -86,7 +86,9 @@ Flickable {
         currentView = 'collectionList';
         updateGameIndex(0, true);
         sounds.back();
-    }
+        //genreTypeIndex = 0;
+        //genreType = genreTypes[genreTypeIndex];
+}
 
     function onDetailsPressed() {
         previousView = currentView;
@@ -193,6 +195,9 @@ Flickable {
     Keys.onReleased: {
         // R2
         if (api.keys.isPageDown(event)) {
+            genreTypes = getGenres();
+            devTypes = getDevelopers();
+            pubTypes = getPublishers();
             event.accepted = true;
             previousView = currentView;
             currentView = 'sorting';
