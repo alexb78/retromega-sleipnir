@@ -49,12 +49,14 @@ Item {
     function onMorePressed() {
         previousView = currentView;
         fullDescription.anchors.topMargin = 0;
+        screensaver.reset();
         sounds.forward();
     }
 
     function hideFullDescription() {
         fullDescription.anchors.topMargin = root.height;
         fullDescription.resetFlickable();
+        screensaver.reset();
         sounds.back();
     }
 
@@ -62,17 +64,18 @@ Item {
         if (!cheevosEnabled) return;
         previousView = currentView;
         currentView = 'cheevos';
+        screensaver.reset();
         sounds.forward();
     }
 
     function onAttractPressed() {
         inAttractMode = true;
         currentView = 'attract';
+        screensaver.reset();
         sounds.forward();
     }
 
     Keys.onPressed: {
-        screensaver.reset();
         if (api.keys.isAccept(event)) {
             event.accepted = true;
             onAcceptPressed();
@@ -92,6 +95,7 @@ Item {
         if (api.keys.isPrevPage(event)) {
             event.accepted = true;
             const updated = updateCollectionIndex(0);
+            screensaver.reset();
             if (updated) { sounds.nav(); }
         }
 
@@ -99,6 +103,7 @@ Item {
         if (api.keys.isNextPage(event)) {
             event.accepted = true;
             const updated = updateCollectionIndex(allCollections.length - 1);
+            screensaver.reset();
             if (updated) { sounds.nav(); }
         }
     }

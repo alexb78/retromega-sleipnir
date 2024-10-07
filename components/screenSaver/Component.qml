@@ -13,7 +13,7 @@ Rectangle {
     opacity: 0
     Behavior on opacity {NumberAnimation {duration: screensaver.fadeTime * 1000}}
 
-    property int timeout: 3
+    property int timeout: 30
     property int fadeTime: 5
     property int changeTime: 12
 
