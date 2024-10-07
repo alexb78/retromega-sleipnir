@@ -12,6 +12,7 @@ import 'components/gameMedia' as GameMedia
 import 'components/attract' as Attract
 import 'components/retroAchievements' as RetroAchievements
 import 'components/gameCheevos' as GameCheevos
+import 'components/screenSaver' as ScreenSaver
 
 FocusScope {
     id: root;
@@ -256,11 +257,16 @@ FocusScope {
 
         cheevosEnabled = settings.get('raUserName') !== '' && settings.get('raApiKey') !== '';
 
+        screensaver.reset()
+
         sounds.start();
     }
 
     Component.onDestruction: {
         if (currentView == 'gameCheevos' ) {
+            currentView = previousView;
+        }
+        if (currentView == 'screensaver' ) {
             currentView = previousView;
         }
         api.memory.set('currentView', currentView);
@@ -405,7 +411,6 @@ FocusScope {
         ]
     }
 
-
     // data components
     Settings.Handler { id: settings; }
     Themes.Handler { id: theme; }
@@ -499,6 +504,13 @@ FocusScope {
 
         visible: currentView === 'media';
         focus: currentView === 'media';
+    }
+
+    ScreenSaver.Component {
+        id: screensaver
+        anchors.fill: parent
+        visible: currentView === 'screensaver';
+        focus: currentView === 'screensaver';
     }
 
     /* Text { id: debug; x: 20; y: 20; width: 20; height: 20; text: 'debug'; color: 'magenta'; } */

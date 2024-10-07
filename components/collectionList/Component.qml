@@ -3,6 +3,8 @@ import QtQuick 2.15
 import '../footer' as Footer
 import '../header' as Header
 
+import '../screenSaver' as ScreenSaver
+
 Item {
     anchors.fill: parent;
 
@@ -13,29 +15,34 @@ Item {
     Keys.onLeftPressed: {
         event.accepted = true;
         const updated = updateCollectionIndex(currentCollectionIndex - 1);
+        screensaver.reset();
         if (updated) { sounds.nav(); }
     }
 
     Keys.onRightPressed: {
         event.accepted = true;
         const updated = updateCollectionIndex(currentCollectionIndex + 1);
+        screensaver.reset();
         if (updated) { sounds.nav(); }
     }
 
     Keys.onUpPressed: {
         event.accepted = true;
         fullDescription.scrollUp();
+        screensaver.reset();
     }
         
     Keys.onDownPressed: {
         event.accepted = true;
         fullDescription.scrollDown();
+        screensaver.reset();
     }        
 
     function onAcceptPressed() {
         currentGame = null;
         updateSortedCollection();
         currentView = 'gameList';
+        screensaver.reset();
         sounds.forward();
     }
 
@@ -65,6 +72,7 @@ Item {
     }
 
     Keys.onPressed: {
+        screensaver.reset();
         if (api.keys.isAccept(event)) {
             event.accepted = true;
             onAcceptPressed();

@@ -39,9 +39,11 @@ There is also this video guide [available here](https://www.youtube.com/watch?v=
 - multiple image packages for collections
 
 ## Features added in this repo
-- Display additional assets in fullscreen: video, front and back box art, screen shot, title screen and cartridge. Note: Parts of the code taken from MediaView component of gameOS theme by Seth Powell.
-- Display collection summary text. Note: Parts of the code taken from Colorful theme by RobZombie.
-- Features added from original retro mega (header navigation, full screen game description, ...
+- Media viewer: Display additional assets in fullscreen: video, front and back box art, screen shot, title screen and cartridge. Note: Parts of the code taken from MediaView component of gameOS theme by Seth Powell.
+- Collection intro text: Display collection summary text. Note: Parts of the code taken from Colorful theme by RobZombie.
+- Original retro mega theme: Features added from original retro mega (header navigation, full screen game description, ...)
+- Filter: Added filter settings for genre, developer and publisher (adapted from samwelnella)
+- Screen saver: Added screen saver from struceOS (by my_name_is_p)
 
 ---
 

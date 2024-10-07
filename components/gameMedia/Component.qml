@@ -11,7 +11,7 @@ import QtQml.Models 2.10
 FocusScope {
 id: root
 
-    property bool showTitle: true;
+    property bool showTitle: false;
     property var mediaModel: mediaArray()
     property int mediaIndex: 0
     property bool isVideo: mediaModel.length ? mediaModel[mediaIndex].includes(".mp4") || mediaModel[mediaIndex].includes(".webm") : false
@@ -201,6 +201,42 @@ id: root
             right: parent.right;
             rightMargin: root.width * .03;
         }
+    }
+
+    Image { //logo
+        id: logo
+        source: currentGame.assets.logo
+
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.margins: vpx(48)
+
+        height: vpx(200)
+        width: vpx(400)
+
+        fillMode: Image.PreserveAspectFit
+
+        horizontalAlignment: Image.AlignRight
+        verticalAlignment: Image.AlignBottom
+
+        smooth: true
+        antialiasing: true
+
+        visible: false
+
+    }
+
+    DropShadow { //logo_shadow
+        id: logo_shadow
+        source: logo
+
+        anchors.fill: logo
+
+        color: 'black';
+        horizontalOffset: 3
+        verticalOffset: 3
+        radius: 8
+        samples: 16
     }
 
     Text {
