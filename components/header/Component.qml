@@ -75,7 +75,7 @@ Rectangle {
         id: title_systems
 
         visible: showHeaderLink ;
-        title: "Systems"
+        title: "All Games"
         index: 0
         anchors.left: parent.left
         anchors.top: parent.top
@@ -85,10 +85,10 @@ Rectangle {
         MouseArea {
             anchors.fill: parent;
             onClicked: {
-                updateCollectionIndex(0);
+                updateCollectionIndex(title_systems.index);
                 updateSortedCollection();
                 //currentShortName = 'allgames';
-                currentView = 'collectionList';
+                currentView = 'gameList';
                 //updateGameIndex(0, true);
                 sounds.back();    
                 setHomeIndex(title_systems.index);    
