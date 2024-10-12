@@ -25,6 +25,7 @@ FocusScope {
     property var currentViewCallbacks: [];
 
     property int currentCollectionIndex: -1;
+    property int previousCollectionIndex: -1;
     property var currentCollection;
     property string currentShortName;
     property var currentGameList;
@@ -134,6 +135,22 @@ FocusScope {
         return val;
     }
 
+    function updateAdditionalCollection() {
+        if (currentShortName === 'favorites') {
+            currentGameList = allFavorites;
+            setHomeIndex(1);
+        } else if (currentShortName === 'recents') {
+            currentGameList = filterLastPlayed;
+            setHomeIndex(2);
+        } else if (currentShortName === 'allgames') {
+            currentGameList = sortedCollection;
+            setHomeIndex(0);
+        }
+
+        currentCollection = additionalCollections[currentCollectionIndex];
+        updateGameIndex(0, true);
+    }
+
     function updateSortedCollection() {
         if (currentShortName === 'favorites') {
             currentGameList = allFavorites;
@@ -158,6 +175,7 @@ FocusScope {
         if (boundedIndex === currentCollectionIndex) return false;
 
         currentCollectionIndex = boundedIndex;
+        previousCollectionIndex = currentCollectionIndex;
         currentShortName = allCollections[currentCollectionIndex].shortName;
 
         // this prevents a circular update loop if we're updating from dragging the collection list
@@ -165,6 +183,15 @@ FocusScope {
             collectionList.updateIndex(currentCollectionIndex);
         }
 
+        return true;
+    }
+
+    function updateAdditionalCollectionIndex(newIndex) {
+        currentCollectionIndex = newIndex;
+        currentShortName = additionalCollections[currentCollectionIndex].shortName;
+
+        collectionList.updateIndex(currentCollectionIndex);
+        
         return true;
     }
 
@@ -287,6 +314,15 @@ FocusScope {
         settings.saveAll();
     }
 
+    property var additionalCollections: {
+        const collections = [];
+
+        collections.unshift({'name': 'Last Played', 'shortName': 'recents', 'games': filterLastPlayed});
+        collections.unshift({'name': 'Favorites', 'shortName': 'favorites', 'games': allFavorites});
+        collections.unshift({'name': 'All Games', 'shortName': 'allgames', 'games': api.allGames});
+
+        return collections;
+    };
 
     // code to handle collection modification
     property var allCollections: {

@@ -6,11 +6,11 @@ import '../header' as Header
 Flickable {
     anchors.fill: parent;
 
-    property bool showHeaderLinkItems: {
-        return (currentCollection.shortName === 'favorites' && settings.get('showFavorites'))
-            || (currentCollection.shortName === 'allgames') 
-            || (currentCollection.shortName === 'recents' && settings.get('showRecents'));
-    }
+    //property bool showHeaderLinkItems: {
+    //    return currentCollection.shortName === 'favorites'
+    //        || currentCollection.shortName === 'allgames' 
+    //        || currentCollection.shortName === 'recents';
+    //}
 
     flickableDirection: Flickable.HorizontalFlick
     onFlickStarted: {
@@ -83,11 +83,11 @@ Flickable {
 
     function onCancelPressed() {
         //setHomeIndex(0);
+        updateCollectionIndex(previousCollectionIndex);
+        updateSortedCollection();
         currentView = 'collectionList';
         updateGameIndex(0, true);
         sounds.back();
-        //genreTypeIndex = 0;
-        //genreType = genreTypes[genreTypeIndex];
 }
 
     function onDetailsPressed() {
@@ -261,7 +261,7 @@ Flickable {
         showDivider: true;
         shade: 'dark';
         color: theme.current.bgColor;
-        showHeaderLink: showHeaderLinkItems;
-        showTitle: true && !showHeaderLinkItems;
+        showHeaderLink: false;
+        showTitle: true;
     }
 }

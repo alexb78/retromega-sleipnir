@@ -85,13 +85,13 @@ Rectangle {
         MouseArea {
             anchors.fill: parent;
             onClicked: {
-                updateCollectionIndex(title_systems.index);
-                updateSortedCollection();
-                //currentShortName = 'allgames';
+                currentShortName = 'allgames';
+                updateAdditionalCollectionIndex(title_systems.index);
+                updateAdditionalCollection();
                 currentView = 'gameList';
-                //updateGameIndex(0, true);
                 sounds.back();    
-                setHomeIndex(title_systems.index);    
+                //setHomeIndex(title_systems.index);    
+                screensaver.reset();
             }
         }       
         //KeyNavigation.right: title_recent
@@ -101,7 +101,7 @@ Rectangle {
     HeaderLink {
         id: title_favorites
 
-        visible: showHeaderLink && settings.get('showFavorites');
+        visible: showHeaderLink;// && settings.get('showFavorites');
         title: "Favorites"
         index: 1
         anchors.left: title_systems.right
@@ -113,12 +113,13 @@ Rectangle {
             anchors.fill: parent;
             onClicked: {
                 currentGame = null;
-                //currentShortName = 'favorites';
-                updateCollectionIndex(title_favorites.index);
-                updateSortedCollection();
+                currentShortName = 'favorites';
+                updateAdditionalCollectionIndex(title_favorites.index);
+                updateAdditionalCollection();
                 currentView = 'gameList';
                 sounds.forward();       
-                setHomeIndex(title_favorites.index);    
+                //setHomeIndex(title_favorites.index);    
+                screensaver.reset();
             }
         }    
         //KeyNavigation.right: title_systems
@@ -128,7 +129,7 @@ Rectangle {
     HeaderLink {
         id: title_recent
 
-        visible: showHeaderLink && settings.get('showRecents');
+        visible: showHeaderLink;// && settings.get('showRecents');
         title: "Last Played"
         index: 2
         anchors.left: title_favorites.right
@@ -140,12 +141,13 @@ Rectangle {
             anchors.fill: parent;
             onClicked: {
                 //currentGame = null;
-                //currentShortName = 'recents';
-                updateCollectionIndex(title_recent.index);
-                updateSortedCollection();
+                currentShortName = 'recents';
+                updateAdditionalCollectionIndex(title_recent.index);
+                updateAdditionalCollection();
                 currentView = 'gameList';
                 sounds.forward();   
-                setHomeIndex(title_recent.index);    
+                //setHomeIndex(title_recent.index);    
+                screensaver.reset();
             }
         }      
         //KeyNavigation.right: title_favorites
