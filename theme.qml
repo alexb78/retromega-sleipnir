@@ -145,6 +145,9 @@ FocusScope {
         } else if (currentShortName === 'allgames') {
             currentGameList = sortedCollection;
             setHomeIndex(0);
+        } else {
+            currentGameList = sortedCollection;
+            setHomeIndex(-1);
         }
 
         currentCollection = additionalCollections[currentCollectionIndex];
@@ -152,15 +155,18 @@ FocusScope {
     }
 
     function updateSortedCollection() {
-        if (currentShortName === 'favorites') {
+        if (currentShortName === 'favorites' && settings.get('showFavorites')) {
             currentGameList = allFavorites;
             setHomeIndex(1);
-        } else if (currentShortName === 'recents') {
+        } else if (currentShortName === 'recents' && settings.get('showRecents')) {
             currentGameList = filterLastPlayed;
             setHomeIndex(2);
-        } else {
+        } else if (currentShortName === 'allgames' && settings.get('showAllGames')) {
             currentGameList = sortedCollection;
             setHomeIndex(0);
+        } else  {
+            currentGameList = sortedCollection;
+            setHomeIndex(-1);
         }
 
         currentCollection = allCollections[currentCollectionIndex];

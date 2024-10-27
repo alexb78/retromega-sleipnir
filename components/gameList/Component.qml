@@ -6,11 +6,12 @@ import '../header' as Header
 Flickable {
     anchors.fill: parent;
 
-    //property bool showHeaderLinkItems: {
-    //    return currentCollection.shortName === 'favorites'
-    //        || currentCollection.shortName === 'allgames' 
-    //        || currentCollection.shortName === 'recents';
-    //}
+    property bool headerCollectionActive: {
+        //console.log(currentCollection.shortName);
+        return currentCollection.shortName === 'favorites'
+            || currentCollection.shortName === 'allgames' 
+            || currentCollection.shortName === 'recents';
+    }
 
     flickableDirection: Flickable.HorizontalFlick
     onFlickStarted: {
@@ -82,9 +83,9 @@ Flickable {
     }
 
     function onCancelPressed() {
-        //setHomeIndex(0);
         updateCollectionIndex(previousCollectionIndex);
         updateSortedCollection();
+        setHomeIndex(-1);
         currentView = 'collectionList';
         updateGameIndex(0, true);
         sounds.back();
@@ -194,7 +195,7 @@ Flickable {
     // R2 and L2 must be handled 'onRelease' because of an android bug that requires double presses
     Keys.onReleased: {
         // R2
-        if (api.keys.isPageDown(event)) {
+        if (api.keys.isPageDown(event) && !headerCollectionActive) {
             genreTypes = getGenres();
             devTypes = getDevelopers();
             pubTypes = getPublishers();
@@ -261,7 +262,8 @@ Flickable {
         showDivider: true;
         shade: 'dark';
         color: theme.current.bgColor;
-        showHeaderLink: false;
-        showTitle: true;
+        showHeaderLink: headerCollectionActive;
+        showSorting: !headerCollectionActive;
+        showTitle: !headerCollectionActive;
     }
 }
