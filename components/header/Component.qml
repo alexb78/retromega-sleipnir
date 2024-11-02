@@ -76,7 +76,7 @@ Rectangle {
 
         visible: showHeaderLink ;
         title: "All Games"
-        index: 0
+        index: additionalCollections.length-1
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.topMargin: 16
@@ -103,7 +103,7 @@ Rectangle {
 
         visible: showHeaderLink;// && settings.get('showFavorites');
         title: "Favorites"
-        index: 1
+        index: additionalCollections.length-2
         anchors.left: title_systems.right
         anchors.top: parent.top
         anchors.topMargin: 16
@@ -131,7 +131,7 @@ Rectangle {
 
         visible: showHeaderLink;// && settings.get('showRecents');
         title: "Last Played"
-        index: 2
+        index: additionalCollections.length-3
         anchors.left: title_favorites.right
         anchors.top: parent.top
         anchors.topMargin: 16
