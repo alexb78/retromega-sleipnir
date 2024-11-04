@@ -158,7 +158,8 @@ Item {
 
     property string imgScreenshot: {
         if (currentGame === null) return '';
-        return currentGame.assets.screenshot;
+        if (currentGame.assets.screenshot !== "") return currentGame.assets.screenshot;
+        return currentGame.assets.boxFront;
     }
 
     //property string imgTile: {
@@ -170,14 +171,13 @@ Item {
     property string imgCart: {
         if (currentGame === null) return '';
         if (currentGame.assets.cartridge !== "") return currentGame.assets.cartridge;
-        if (currentGame.assets.boxFront !== "") return currentGame.assets.boxFront;
-        if (currentGame.assets.titlescreen !== "") return currentGame.assets.titlescreen;
         return currentGame.assets.boxBack;
     }
 
     property string imgLogo: {
         if (currentGame === null) return '';
-        return currentGame.assets.logo;
+        if (currentGame.assets.logo !== "") return currentGame.assets.logo;
+        return currentGame.assets.titlescreen;
     }
 
     property string favoriteGlyph: {
