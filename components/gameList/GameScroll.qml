@@ -321,9 +321,9 @@ Item {
             color: theme.current.detailsColor;
             opacity: .5;
             elide: Text.ElideRight;
-            maximumLineCount: 1;
+            maximumLineCount: 2;
             wrapMode: Text.WordWrap;
-            horizontalAlignment: Text.AlignHCenter;
+            horizontalAlignment: Text.AlignRight;
 
             font {
                 family: glyphs.name;
@@ -346,7 +346,7 @@ Item {
             elide: Text.ElideRight;
             maximumLineCount: 2;
             wrapMode: Text.WordWrap;
-            horizontalAlignment: Text.AlignHCenter;
+            horizontalAlignment: Text.AlignRight;
 
             font {
                 family: glyphs.name;
@@ -368,7 +368,7 @@ Item {
             opacity: .5;
             elide: Text.ElideRight;
             maximumLineCount: 1;
-            horizontalAlignment: Text.AlignHCenter;
+            horizontalAlignment: Text.AlignRight;
 
             font {
                 family: glyphs.name;
@@ -379,7 +379,7 @@ Item {
             width: parent.width;
             anchors {
                 bottom: parent.bottom;
-                bottomMargin: parent.height * .25;
+                bottomMargin: parent.height * .15;
             }
         }
         }
